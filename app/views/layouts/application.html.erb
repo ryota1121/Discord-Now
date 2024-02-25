@@ -11,6 +11,28 @@
   </head>
 
   <body>
+    <header>
+      <% if user_signed_in? %>
+        <li>
+          <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+        </li>
+      <% else %>
+        <li>
+          <%= link_to "新規登録", new_user_registration_path %>
+        </li>
+        <li>
+          <%= link_to "ログイン", new_user_session_path %>
+        </li>
+      <% end %>
+      <% if false %>
+        <%= image_tag current_user.image %>
+        <%= current_user.name %>さん
+        <%= link_to "ログアウト", log_out_path %>
+      <% else  %>
+      ゲストさん
+      <%= button_to "Discordでログイン", "/auth/discord", method: :post, data: { turbo: false } %>
+      <% end %>
+    </header>
     <%= yield %>
   </body>
 </html>
