@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  root 'homes#index'
+  root 'homes#top'
+  get 'homes/about' => 'homes#about', as: 'about'
+  post 'homes/guest_login', to: 'homes#guest_login'
 
   get 'auth/:provider/callback', to: 'sessions#create'
   get 'auth/failure', to: redirect('/')
@@ -7,7 +9,6 @@ Rails.application.routes.draw do
 
   resources :sessions, only: %i[create destroy]
   
-  get 'homes/top'
   devise_for :users
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
