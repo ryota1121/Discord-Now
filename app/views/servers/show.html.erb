@@ -1,0 +1,13 @@
+<h2>ゲーム名</h2>
+<p><%= @server.game_name %></p>
+
+<h2>サーバー名</h2>
+<p><%= @server.server_name %></p>
+
+<h2>タイトル</h2>
+<p><%= @server.title %></p>
+
+<h2>コメント</h2>
+<p><%= @server.body %></p>
+
+<%= link_to "編集", edit_server_path(@server.id) %>
