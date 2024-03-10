@@ -13,34 +13,65 @@
   </head>
 
   <body>
-    <header>
-      <% if user_signed_in? %>
-        <li>
-          <%= link_to '投稿', new_server_path %>
-        </li>
-        <li>
-        <%= link_to 'マイページ', user_path(current_user.id) %>
-        </li>
-        <li>
-          <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-        </li>
-      <% else %>
-        <li>
-          <%= link_to "新規登録", new_user_registration_path %>
-        </li>
-        <li>
-          <%= link_to "ログイン", new_user_session_path %>
-        </li>
+    <nav class= "navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <div class="logo">
+          <h1><%= link_to 'Game Now', root_path, class: 'nav-link text-white' %></h1>
+        </div>
+    
+        <div class ="collapse navbar-collapse">
+          <ul class ="navbar-nav ml-auto">
+            <div class = "row">
+              <% if user_signed_in? %>
+                <li>
+                  <%= link_to new_server_path, class: 'nav-link text-white' do%>
+                    <i class="fa-solid fa-pen-to-square"></i> 投稿
+                  <% end %>
+                </li>
+                
+                <li>
+                  <%= link_to servers_path, class: 'nav-link text-white' do %>
+                    <i class="fa-solid fa-house"></i> ホーム
+                  <% end %>
+                </li>
+                
+                <li>
+                  <%= link_to user_path(current_user.id), class: 'nav-link text-white' do %>
+                    <i class="fa-solid fa-user"></i> マイページ
+                  <% end %>
+                </li>
+                
+                <li>
+                  <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link text-white' do %>
+                    <i class="fa-solid fa-right-from-bracket"></i> ログアウト
+                  <% end %>
+                </li>
+                
+              <% else %>
+                <li>
+                  <%= link_to new_user_registration_path, class: 'nav-link text-white' do %>
+                    <i class="fa-solid fa-user-plus"></i> 新規登録
+                  <% end %>
+                </li>
+                
+                <li>
+                  <%= link_to new_user_session_path, class: 'nav-link text-white' do %>
+                    <i class="fa-solid fa-right-to-bracket"></i> ログイン
+                  <% end %>
+                </li>
       <% end %>
       <% if false %>
         <%= image_tag current_user.image %>
         <%= current_user.name %>さん
         <%= link_to "ログアウト", log_out_path %>
       <% else  %>
-      ゲストさん
       <%= button_to "Discordでログイン", "/auth/discord", method: :post, data: { turbo: false } %>
       <% end %>
-    </header>
-    <%= yield %>
+      </div>
+    </nav>
+   
+    <main class="container">
+      <%= yield %>
+    </main>
   </body>
 </html>
