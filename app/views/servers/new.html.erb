@@ -1,4 +1,12 @@
 <h1>新規投稿</h1>
+<% if @server.errors.any? %>
+  <%= @server.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @server.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
 
 <%= form_with model: @server, url: '/servers', method: :post do |f| %>
   <h4>ゲーム名</h4>

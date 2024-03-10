@@ -1,3 +1,5 @@
+<p><%= image_tag @server.user.get_profile_image(100,100) %></p>
+
 <h2>ゲーム名</h2>
 <p><%= @server.game_name %></p>
 
@@ -11,3 +13,4 @@
 <p><%= @server.body %></p>
 
 <%= link_to "編集", edit_server_path(@server.id) %>
+<%= link_to "削除", server_path(@server.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>

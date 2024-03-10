@@ -4,5 +4,6 @@
 
   <p>タイトル</p>
   <span><%= link_to server.title, server_path(server.id) %></span>
-  
+
 <% end %>
+<%= paginate @servers %>
