@@ -14,6 +14,7 @@ class ServersController < ApplicationController
   end
 
   def index
+    @servers = Server.all
     @servers = Server.page(params[:page])
   end
 

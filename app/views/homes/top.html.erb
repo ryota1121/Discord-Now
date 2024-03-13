@@ -1,6 +1,5 @@
-<h1>Homes#top</h1>
-<p>Find me in app/views/homes/top.html.erb</p>
-
 <% if !user_signed_in? %>
   <%= button_to "guest", homes_guest_login_path, method: :post, class: "btn btn-success" %>
 <% end %>
+
+<%= button_to "Discordでログイン", "/auth/discord", method: :post, data: { turbo: false } %>
