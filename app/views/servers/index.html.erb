@@ -1,7 +1,14 @@
 <div class="container">
-  
-    <h3>Now Gaming</h3>
-  
+
+  <h3>Now Gaming</h3>
+
+  <div>
+    <%= link_to "全て", servers_path, class: "badge bg-secondary text-light" %>
+    <% @game_names.each do | game_name | %>
+      <%= link_to game_name, servers_path(game_name: game_name), class: "badge bg-secondary text-light" %>
+    <% end %>
+  </div>
+
 <% @servers.each do |server| %>
 <div class="server-header">
   <div class="server-icon">
@@ -9,9 +16,10 @@
   </div>
 </div>
 
-      <<%= server.server_name %></th>
+      <td><%= server.game_name %></th>
       <td><%= server.server_name %></td>
-      <td><%= server.server_name %></td>
+      <td><%= server.title %></td>
+      <td><%= server.body %></td>
 
 
 

@@ -15,7 +15,10 @@ class ServersController < ApplicationController
 
   def index
     @servers = Server.all
-    @servers = Server.page(params[:page])
+    @game_names = @servers.map { |o| o.game_name }.uniq
+    @servers = @servers.where(game_name: params[:game_name]) if params[:game_name].present?
+    @servers = @servers.keyword_search(params[:keyword]) if params[:keyword].present?
+    @servers = @servers.page(params[:page])
   end
 
   def show
@@ -41,6 +44,6 @@ class ServersController < ApplicationController
   private
 
   def server_params
-    params.require(:server).permit(:game_name, :server_name, :title, :body, :image,)
+    params.require(:server).permit(:game_name, :server_name, :title, :body, :icon)
   end
 end
