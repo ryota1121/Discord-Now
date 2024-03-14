@@ -1,30 +1,35 @@
-<div class="container">
+<div class="container px-5 px-sm-0">
+  <div class="row">
+    <div class="col-md-7 offset-md-1">
+     
+        <h2>Now Gaming</h2>
 
-  <h3>Now Gaming</h3>
 
-  <div>
-    <%= link_to "全て", servers_path, class: "badge bg-secondary text-light" %>
-    <% @game_names.each do | game_name | %>
-      <%= link_to game_name, servers_path(game_name: game_name), class: "badge bg-secondary text-light" %>
-    <% end %>
-  </div>
-
-<% @servers.each do |server| %>
-<div class="server-header">
+          <% @servers.each do |server| %>
+         <div class="server-header">
   <div class="server-icon">
-
   </div>
 </div>
-
       <td><%= server.game_name %></th>
       <td><%= server.server_name %></td>
       <td><%= server.title %></td>
       <td><%= server.body %></td>
 
 
-
-<% end %>
-<%= paginate @servers %>
+          <% end %>
+        </table>
+        <%= paginate @servers %>
+      </div>
+    
+    <div class="col-md-3">
+      <h2>Game tag</h2>
+    <%= link_to "全て", servers_path, class: "badge bg-secondary text-light" %></br>
+    <% @game_names.each do | game_name | %>
+      <%= link_to game_name, servers_path(game_name: game_name), class: "badge bg-secondary text-light" %></br>
+    <% end %>
+    </div>
   </div>
-</div>
-</div>
+</div
+
+
+

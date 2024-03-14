@@ -6,7 +6,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/30797ff985.js" crossorigin="anonymous"></script>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -20,7 +20,7 @@
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        
+
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto">
               <% if user_signed_in? %>
@@ -29,38 +29,38 @@
                     <i class="fa-solid fa-pen-to-square"></i> 投稿
                   <% end %>
                 </li>
-                
+
                 <li class="nav-item">
                   <%= link_to servers_path, class: 'nav-link' do %>
                     <i class="fa-solid fa-house"></i> ホーム
                   <% end %>
                 </li>
-                
+
                 <li class="nav-item">
                   <%= link_to user_path(current_user.id), class: 'nav-link' do %>
                     <i class="fa-solid fa-user"></i> マイページ
                   <% end %>
                 </li>
-                
+
                 <li class="nav-item">
                   <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link' do %>
                     <i class="fa-solid fa-right-from-bracket"></i> ログアウト
                   <% end %>
                 </li>
-                
+
               <% else %>
                 <li class="nav-item">
                   <%= link_to servers_path, class: 'nav-link' do %>
                     <i class="fa-solid fa-house"></i> ホーム
                   <% end %>
                 </li>
-                
+
                 <li class="nav-item">
                   <%= link_to new_user_registration_path, class: 'nav-link' do %>
                     <i class="fa-solid fa-user-plus"></i> 新規登録
                   <% end %>
                 </li>
-                
+
                 <li class="nav-item">
                   <%= link_to new_user_session_path, class: 'nav-link' do %>
                     <i class="fa-solid fa-right-to-bracket"></i> ログイン
@@ -80,7 +80,7 @@
           </div>
         </div>
       </nav>
-   
+
     <main class="container">
       <%= yield %>
     </main>
