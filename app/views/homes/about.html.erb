@@ -1,0 +1,5 @@
+<% if !user_signed_in? %>
+  <%= button_to "guest", homes_guest_login_path, method: :post, class: "btn btn-success" %>
+<% end %>
+
+<%= button_to "Discordでログイン", "/auth/discord", method: :post, data: { turbo: false } %>

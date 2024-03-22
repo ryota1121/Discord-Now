@@ -1,5 +1,36 @@
-<div>
-  <h3><%= @user.name %></h3>
+<div class="row">
+<div class="my-5 d-flex">
   <%= image_tag @user.get_profile_image(100,100) %>
-  <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
+  <div class="px-5 d-flex align-self-center">
+    <h2 class="me-5"><%= @user.name %></h2>
+    <p><%= link_to "プロフィール編集", edit_user_path(@user), class: "btn btn-success" %></p>
+  </div>
 </div>
+</div>
+
+<div class="row">
+    <% @servers.each do |server| %>
+    <span class="col-6 mb-5">
+      <div class="d-flex p-1 bg-info">
+        <div class="pe-2">
+          <%= image_tag server.user.get_profile_image(50,50) %>
+        </div>
+        <div>
+          <span class="server_name"><%= server.server_name %></span><br>
+          <span class="badge bg-secondary text-light"><%= server.game_name %></span>
+        </div>
+        <div class="align-self-center">
+          <%= link_to "編集", edit_server_path(server.id), class: "btn btn-success" %>
+          <%= link_to "削除", server_path(server.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %>
+        </div>
+      </div>
+      <div class="server_main">
+        <div class="p-1 bg-info-subtle">
+          <div class=""><%= server.title %></div>
+          <div class=""><%= server.body %></div>
+        </div>
+      </div>
+    </span>
+    <% end %>
+  </div>
+

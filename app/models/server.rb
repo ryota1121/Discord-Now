@@ -1,9 +1,17 @@
 class Server < ApplicationRecord
   belongs_to :user
+  
   validates :game_name, presence: true
+  validates :game_name, length: { in: 2..30 }
   validates :server_name, presence: true
+  validates :server_name, length: { in: 2..30 }
   validates :title, presence: true
+  validates :title, length: { in: 2..30 }
   validates :body, presence: true
+  validates :body, length: { maximum: 200 }
+
+  
+  validate :user_id_uniq_check
   
   has_one_attached :icon
   
@@ -20,5 +28,11 @@ class Server < ApplicationRecord
     .or(where("server_name like ?", "%#{keyword}%"))
     .or(where("title like ?", "%#{keyword}%"))
     .or(where("body like ?", "%#{keyword}%"))
+  end
+  
+  def user_id_uniq_check
+    if self.user.servers.any?
+      errors.add(:base, "各ユーザーは一つの掲示板しか投稿できません")
+    end
   end
 end

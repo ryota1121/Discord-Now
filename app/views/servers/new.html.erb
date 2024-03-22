@@ -1,28 +1,52 @@
-<h1>新規投稿</h1>
-<% if @server.errors.any? %>
-  <%= @server.errors.count %>件のエラーが発生しました
-  <ul>
-    <% @server.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
+<div class="container">
+  <div class="row my-4">
+      <h2>掲示板に投稿する</h2>
+    <% if @server.errors.any? %>
+      <%= @server.errors.count %>件のエラーが発生しました
+      <ul>
+        <% @server.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
     <% end %>
-  </ul>
+  </div>
+  
+<div class="col-lg-6 mb-5 p-3 bg-info-subtle">
+  <%= form_with model: @server, url: '/servers', method: :post do |f| %>
+  <div class="row pb-2">
+    <h5>サーバー画像</h5>
+    <%= f.file_field :icon %>
+  </div>
+
+  <div class="row pb-2">
+    <h5>掲示板名<span class="text-danger">*</span></h5>
+    <span><%= f.text_field :server_name %></span>
+  </div>
+
+  <div class="row pb-2">
+    <h5>ゲーム名<span class="text-danger">*</span></h5>
+    <span><%= f.text_field :game_name %></span>
+  </div>
+  
+  <div class="row pb-2">
+    <h5>通話手段<span class="text-danger">*</span></h5>
+    <span><%= f.text_field :tool %></span>
+  </div>
+  
+  <div class="row pb-2">
+    <h5>タイトル<span class="text-danger">*</span></h5>
+    <span><%= f.text_field :title %></span>
+  </div>
+
+  <div class="row pb-2">
+    <h5>コメント<span class="text-danger">*</span></h5>
+    <span><%= f.text_area :body %></span>
+  </div>
+
+  <div class="row pb-2">
+    <span><%= f.submit '投稿', class: "btn btn-outline-success"%></span>
+  </div>
 <% end %>
-
-<%= form_with model: @server, url: '/servers', method: :post do |f| %>
-  <h4>ゲーム名</h4>
-  <%= f.text_field :game_name %>
-
-  <h4>icon</h4>
-  <%= f.file_field :icon %>
-
-  <h4>サーバー名</h4>
-  <%= f.text_field :server_name %>
-
-  <h4>タイトル</h4>
-  <%= f.text_field :title %>
-
-  <h4>コメント</h4>
-  <%= f.text_area :body %>
-
-  <%= f.submit '投稿' %>
-<% end %>
+  </div>
+  </div>
+</div>

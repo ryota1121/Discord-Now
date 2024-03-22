@@ -10,13 +10,14 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/30797ff985.js" crossorigin="anonymous"></script>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container-fluid">
-        <%= link_to 'Game Now', servers_path, class: 'navbar-brand' %>
+        <%= link_to 'Game Now', root_path, class: 'navbar-brand' %>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -32,7 +33,7 @@
 
                 <li class="nav-item">
                   <%= link_to servers_path, class: 'nav-link' do %>
-                    <i class="fa-solid fa-house"></i> ホーム
+                    <i class="fa-solid fa-list"></i> 掲示板
                   <% end %>
                 </li>
 
@@ -74,16 +75,32 @@
               <% end %>
             </ul>
             <%= form_with(url: servers_path, method: :get, local: true, class: "d-flex") do |f| %>
-              <%= f.search_field :keyword, value: params[:keyword], class: "form-control me-2", placeholder: "Search" %>
-              <%= f.submit "Search", class: "btn btn-outline-success" %>
+              <%= f.search_field :keyword, value: params[:keyword], class: "form-control me-2", placeholder: "検索" %>
+              <%= f.submit "検索", class: "btn btn-outline-success" %>
             <% end %>
           </div>
         </div>
       </nav>
-
+    <%= yield(:bg_area) %>
     <main class="container">
       <%= yield %>
     </main>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    
+    <footer class="py-4 bg-dark text-light">
+      <div class="container text-center">
+        <ul class="nav justify-content-center mb-3">
+          <li class="nav-item">
+          </li>
+          <li class="nav-item">
+          </li>
+          <li class="nav-item">
+          </li>
+          <p>
+            <small>Copyright &copy;2024 Game Now,All Rights Reserved</small>
+          </p>
+        </ul>
+      </div>
+    </footer>
+   
   </body>
 </html>

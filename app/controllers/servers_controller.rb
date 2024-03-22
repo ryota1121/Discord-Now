@@ -7,7 +7,7 @@ class ServersController < ApplicationController
     @server = Server.new(server_params)
     @server.user_id = current_user.id
     if @server.save
-      redirect_to server_path(@server.id)
+      redirect_to user_path(@server.user.id)
     else
       render :new
     end
@@ -30,20 +30,27 @@ class ServersController < ApplicationController
   end
 
   def update
-    server = Server.find(params[:id])
-    server.update(server_params)
-    redirect_to server_path(server.id)
+    @server = Server.find(params[:id])
+    @user = @server.user
+    if @server.update(server_params)
+      flash[:notice] = "success"
+      redirect_to user_path(@user)
+    else
+      flash.now[:alert] = "failed"
+      render :edit
+    end
   end
 
   def destroy
-    server = Server.find(params[:id])
-    server.destroy
-    redirect_to '/servers'
+    @server = Server.find(params[:id])
+    @user = @server.user
+    @server.destroy
+    redirect_to user_path(@user)
   end
 
   private
 
   def server_params
-    params.require(:server).permit(:game_name, :server_name, :title, :body, :icon)
+    params.require(:server).permit(:game_name, :server_name, :tool, :title, :body, :icon)
   end
 end

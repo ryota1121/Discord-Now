@@ -1,0 +1,7 @@
+ja:
+  activerecord:
+    models:
+      server: 掲示板
+    attributes:
+      server:
+        server_name: 掲示板名

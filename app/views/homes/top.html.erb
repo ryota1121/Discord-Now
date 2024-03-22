@@ -1,5 +1,46 @@
-<% if !user_signed_in? %>
-  <%= button_to "guest", homes_guest_login_path, method: :post, class: "btn btn-success" %>
+<%= content_for(:bg_area) do %>
+  <header><!--</header> class="py-4 bg-info">-->
+    <div class="video-wrapper">
+      <h1 class="video-text">Game Now</h1>
+      <%= video_tag 'bg_video.mp4', autoplay: true, autobuffer: true, loop: true, muted: true, class: "video-background" %>
+    </div>
+  </header>
 <% end %>
 
-<%= button_to "Discordでログイン", "/auth/discord", method: :post, data: { turbo: false } %>
+<div>
+  ddd
+</div>
+
+<style>
+  .video-background {
+    position: revative;
+    width: 100%;
+    z-index: -1;
+  }
+
+  .video-text {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #eee;
+    font-size: 3em;
+  }
+  
+  @media (max-width: 599px) {
+    .video-text {
+      top: 20%;
+    }
+  }
+  
+  @media (min-width: 600px) and (max-width: 799px) {
+    .video-text {
+      top: 30%;
+    }
+  }
+  
+  @media (min-width: 800px) {
+    .video-text {
+      top: 40%;
+    }
+  }
+</style>

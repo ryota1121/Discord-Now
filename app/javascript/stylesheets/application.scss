@@ -1,3 +1,48 @@
 @use '~bootstrap/scss/bootstrap';
 
+@import url('https://fonts.googleapis.com/css2?family=DotGothic16&display=swap')
+
+.dotgothic16-regular {
+  font-family: "DotGothic16", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.pagination {
+  margin: auto;
+  display: flex;
+  width: 50%;
+}
+
+.pagination span {
+  border: 1px solid #999;
+  border-radius: 20px;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 22px;
+  margin: 0 5px;
+}
+
+.pagination span a {
+  text-decoration: none;
+  color: #444;
+}
+
+.pagination span:hover, .pagination span a:hover {
+  background-color: #999;
+}
+
+.pagination .first,  .pagination .last {
+  width: 80px;
+}
+
+.pagination .prev, .pagination .next {
+  width: 60px;
+}
+
+.pagination .current {
+  background-color: #ddd;
+}
 
