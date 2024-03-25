@@ -1,6 +1,8 @@
 @use '~bootstrap/scss/bootstrap';
 
-@import url('https://fonts.googleapis.com/css2?family=DotGothic16&display=swap')
+.text_field {
+  width: 100%;
+}
 
 .dotgothic16-regular {
   font-family: "DotGothic16", sans-serif;

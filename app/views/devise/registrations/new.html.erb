@@ -1,4 +1,11 @@
-<div class="row p-2 my-4 bg-info">
+<div class="row">
+  <div class="col-8 my-4">
+  <h2>このサイトに投稿されている掲示板は<br>
+  １時間で消えます。<br>
+  だからこそ、過去の古い投稿などは無く<br>
+  今ゲームをプレイしている人しかいません！</h2>
+</div>
+  <div class="col-4 p-2 my-4 bg-info">
   <h2>新規登録</h2>
 
 <%= form_with model: @user, url: user_registration_path do |f| %>
@@ -6,12 +13,12 @@
 
   <div class="field">
     <%= f.label :name %><br>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, class: "text_field" %>
   </div>
   
   <div class="field">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "text_field" %>
   </div>
 
   <div class="field">
@@ -19,12 +26,12 @@
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %>文字以上)</em>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+    <%= f.password_field :password, autocomplete: "new-password", class: "text_field" %>
   </div>
 
   <div class="field">
     <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "text_field" %>
   </div>
 
   <div class="mt-2 actions">
@@ -35,5 +42,5 @@
 <div class="mt-2">
   <%= render "devise/shared/links" %>
 </div>
-
+</div>
 </div>

@@ -1,43 +1,44 @@
 <%= content_for(:bg_area) do %>
-  <header><!--</header> class="py-4 bg-info">-->
     <div class="video-wrapper">
-      <h1 class="video-text">Game Now</h1>
-      <%= video_tag 'bg_video.mp4', autoplay: true, autobuffer: true, loop: true, muted: true, class: "video-background" %>
+      <%= video_tag 'bg_video.mp4', autoplay: true, autobuffer: true, loop: true, muted: true%>
+      <div class="video_text">
+        <h3>一緒にゲームをプレイする人を見つけよう！</h3>
+      </div>
     </div>
-  </header>
 <% end %>
 
 <div>
-  ddd
+  
 </div>
 
 <style>
-  .video-background {
-    position: revative;
-    width: 100%;
-    z-index: -1;
-  }
+.video-wrapper video{
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  position: relative;
+}
 
-  .video-text {
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: #eee;
-    font-size: 3em;
-  }
+.video_text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
   
+  color: white;
+}
+
   @media (max-width: 599px) {
     .video-text {
       top: 20%;
     }
   }
-  
+
   @media (min-width: 600px) and (max-width: 799px) {
     .video-text {
       top: 30%;
     }
   }
-  
+
   @media (min-width: 800px) {
     .video-text {
       top: 40%;
