@@ -1,47 +1,89 @@
 <%= content_for(:bg_area) do %>
-    <div class="video-wrapper">
-      <%= video_tag 'bg_video.mp4', autoplay: true, autobuffer: true, loop: true, muted: true%>
-      <div class="video_text">
-        <h3>一緒にゲームをプレイする人を見つけよう！</h3>
-      </div>
-    </div>
+  <div class="bg_area">
+    Game Nowで一緒にゲームをする仲間を見つけよう！
+  </div>
+  <div class="hedder_bar bg-primary text-light">
+    <h2>仲間を募集してみよう！</h2>
+    <h2>
+      <%= link_to new_server_path, class: "badge rounded-pill text-bg-light text-primary" do %>
+        投稿してみる
+      <% end %>
+    </h2>
+  </div>
 <% end %>
 
-<div>
-  
+<div class="py-4">
+    <div id="main_visual" class="carousel slide" data-bs-ride="carousel">
+      <ol class="carousel-indicators">
+        <li data-bs-target="#main_visual" data-bs-slide-to="0" class="active"></li>
+        <li data-bs-target="#main_visual" data-bs-slide-to="1"></li>
+        <li data-bs-target="#main_visual" data-bs-slide-to="2"></li>
+      </ol>
+
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <div class="carousel-caption d-none d-md-block"></div>
+          <h2 class="active_bar">今すぐ一緒にプレイできる仲間を探したいときはGame Now</h2>
+        </div>
+        <div class="carousel-item">
+          <h2 class="active_bar">日時を指定して集まれる仲間を探したいときはGame Day</h2>
+        </div>
+        <div class="carousel-item">
+          <h2 class="active_bar">仲間を募集してみよう！</h2>
+        </div>
+        <a class="carousel-control-prev" href="#main_visual" role="button" data-bs-slide="prev">
+
+        </a>
+        <a class="carousel-control-next" href="#main_visual" role="button" data-bs-slide="next">
+
+        </a>
+      </div>
+  </div>
+</div>
+<div class="pb-4">
+  <h3>
+        募集中のゲーム
+      </h3>
+        <% @game_names.each do | game_name | %>
+          <div class="game_tag ">
+            <%= link_to game_name, servers_path(game_name: game_name), class: "text-light" %>
+          </div>
+        <% end %>
 </div>
 
 <style>
-.video-wrapper video{
-  width: 100%;
+  .bg_area {
+  background-image: url(<%= asset_path('sample.png') %>);
   height: 300px;
-  object-fit: cover;
-  position: relative;
-}
-
-.video_text {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  
+  background-size: cover;
   color: white;
+  text-align: center;
+  padding-top: 100px;
+  font-size: 50px;
 }
 
-  @media (max-width: 599px) {
-    .video-text {
-      top: 20%;
-    }
-  }
+.hedder_bar {
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-  @media (min-width: 600px) and (max-width: 799px) {
-    .video-text {
-      top: 30%;
-    }
-  }
+.active_bar {
+  height: 100px;
+  background: gray;
+  text-align: center;
+  padding-top: 20px;
+}
 
-  @media (min-width: 800px) {
-    .video-text {
-      top: 40%;
-    }
-  }
+.game_tag {
+  height: 100px;
+  width: 200px;
+  border-radius: 10px;
+  background: gray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+}
 </style>

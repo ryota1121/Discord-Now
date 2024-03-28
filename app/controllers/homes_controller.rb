@@ -1,5 +1,10 @@
 class HomesController < ApplicationController
   def top
+    @servers = Server.all
+    @game_names = @servers.map { |o| o.game_name }.uniq
+    @servers = @servers.where(game_name: params[:game_name]) if params[:game_name].present?
+    @servers = @servers.keyword_search(params[:keyword]) if params[:keyword].present?
+    @servers = @servers.page(params[:page])
   end
   
   def about
