@@ -1,5 +1,33 @@
 @use '~bootstrap/scss/bootstrap';
 
+body {
+  background-color: #f4f1f0;
+  font-family: "HiraKakuProN-W6";
+}
+
+nav {
+  background-color: #363234;
+}
+
+.now_logo {
+  color: #d74339;
+}
+
+footer {
+  background-color: #363234;
+}
+
+.now_btn {
+  background-color: #d74339;
+  color: white;
+}
+
+.now_bg {
+  background-color: #c8d7d2;
+  border-radius: 10px;
+  padding: 16px;
+}
+
 .text_field {
   width: 100%;
 }

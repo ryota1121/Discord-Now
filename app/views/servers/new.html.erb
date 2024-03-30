@@ -11,7 +11,7 @@
     <% end %>
   </div>
   
-<div class="col-lg-6 mb-5 p-3 bg-info-subtle">
+<div class="now_bg col-lg-6 mb-5 p-3">
   <%= form_with model: @server, url: '/servers', method: :post do |f| %>
   <div class="row pb-2">
     <h5>サーバー画像</h5>
@@ -29,7 +29,7 @@
   </div>
   
   <div class="row pb-2">
-    <h5>通話手段<span class="text-danger">*</span></h5>
+    <h5>通話アプリ<span class="text-danger">*</span></h5>
     <span><%= f.text_field :tool %></span>
   </div>
   
@@ -44,9 +44,13 @@
   </div>
 
   <div class="row pb-2">
-    <span><%= f.submit '投稿', class: "btn btn-outline-success"%></span>
+    <span><%= f.submit '投稿', class: "now_btn btn"%></span>
   </div>
 <% end %>
   </div>
   </div>
 </div>
+
+<style>
+
+</style>

@@ -1,9 +1,10 @@
-<div class="row">
-<div class="my-5 d-flex">
+<div class="container">
+<div class="row my-5">
+<div class="now_bg p-2 d-flex">
   <%= image_tag @user.get_profile_image(100,100) %>
   <div class="px-5 d-flex align-self-center">
-    <h2 class="me-5"><%= @user.name %></h2>
-    <p><%= link_to "プロフィール編集", edit_user_path(@user), class: "btn btn-success" %></p>
+    <h2 class="user_show"><%= @user.name %></h2>
+    <p class="user_show"><%= link_to "プロフィール編集", edit_user_path(@user), class: "btn btn-success align-self-end" %></p>
   </div>
 </div>
 </div>
@@ -33,4 +34,10 @@
     </span>
     <% end %>
   </div>
+  </div>
 
+<style>
+  .user_show {
+    margin: 0px 80px 0px;
+  }
+</style>

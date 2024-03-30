@@ -1,25 +1,21 @@
-<div class="row">
-    <div class="col-8 my-4">
-  <h2>このサイトに投稿されている掲示板は１時間で消えます。だからこそ、過去の古い投稿などは無く、今ゲームをプレイしている人しかいません！</h2>
-</div>
-<div class="col-4 p-2 my-4 bg-info">
+<div class="container">
+<div class="row my-4">
 <h2>ログイン</h2>
+<div class="now_bg col-lg-6 p-2 mb-5 p-3">
 <%= form_with model: @user, url: user_session_path do |f| %>
-  <div class="field">
+  <div class="row pb-2">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "text_field" %>
   </div>
 
-  <div class="field">
-    <%= f.label :password %><%= link_to "パスワードを忘れた方", new_password_path(resource_name) %><br />
+  <div class="row pb-2">
+    <%= f.label :password %>
     <%= f.password_field :password, autocomplete: "current-password", class: "text_field" %>
   </div>
 
   <% if devise_mapping.rememberable? %>
-    <div class="field">
       <%= f.check_box :remember_me %>
       <%= f.label :remember_me %>
-    </div>
   <% end %>
 
   <div class="mt-2 actions">

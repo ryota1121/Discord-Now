@@ -2,10 +2,10 @@
   <div class="bg_area">
     Game Nowで一緒にゲームをする仲間を見つけよう！
   </div>
-  <div class="hedder_bar bg-primary text-light">
-    <h2>仲間を募集してみよう！</h2>
+  <div class="hedder_bar text-light">
+    <h2 class="m-0">仲間を募集してみよう！</h2>
     <h2>
-      <%= link_to new_server_path, class: "badge rounded-pill text-bg-light text-primary" do %>
+      <%= link_to new_server_path, class: "main_link badge rounded-pill" do %>
         投稿してみる
       <% end %>
     </h2>
@@ -67,6 +67,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #d74339;
+}
+
+.main_link {
+  color: #d74339;
+  background-color: white;
 }
 
 .active_bar {
@@ -80,7 +86,7 @@
   height: 100px;
   width: 200px;
   border-radius: 10px;
-  background: gray;
+  background: #c8d7d2;
   display: flex;
   justify-content: center;
   align-items: center;
