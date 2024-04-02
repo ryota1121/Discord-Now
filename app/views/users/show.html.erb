@@ -1,10 +1,10 @@
 <div class="container">
-<div class="row my-5">
-<div class="now_bg p-2 d-flex">
+<div class="row justify-content-center">
+<div class="now_bg col my-5 p-2 d-flex">
   <%= image_tag @user.get_profile_image(100,100) %>
   <div class="px-5 d-flex align-self-center">
-    <h2 class="user_show"><%= @user.name %></h2>
-    <p class="user_show"><%= link_to "プロフィール編集", edit_user_path(@user), class: "btn btn-success align-self-end" %></p>
+    <h2 class=""><%= @user.name %></h2>
+    <p class=""><%= link_to "プロフィール編集", edit_user_path(@user), class: "btn btn-success align-self-end" %></p>
   </div>
 </div>
 </div>
@@ -17,7 +17,7 @@
           <%= image_tag server.user.get_profile_image(50,50) %>
         </div>
         <div>
-          <span class="server_name"><%= server.server_name %></span><br>
+          <span><%= server.title %></span><br>
           <span class="badge bg-secondary text-light"><%= server.game_name %></span>
         </div>
         <div class="align-self-center">
@@ -27,17 +27,10 @@
       </div>
       <div class="server_main">
         <div class="p-1 bg-info-subtle">
-          <div class=""><%= server.title %></div>
-          <div class=""><%= server.body %></div>
+          <div><%= server.body %></div>
         </div>
       </div>
     </span>
     <% end %>
   </div>
   </div>
-
-<style>
-  .user_show {
-    margin: 0px 80px 0px;
-  }
-</style>

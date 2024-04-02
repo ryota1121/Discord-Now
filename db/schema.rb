@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_03_21_142941) do
+ActiveRecord::Schema.define(version: 2024_04_02_112907) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -42,7 +42,6 @@ ActiveRecord::Schema.define(version: 2024_03_21_142941) do
 
   create_table "servers", force: :cascade do |t|
     t.string "game_name"
-    t.string "server_name"
     t.string "title"
     t.text "body"
     t.datetime "created_at", precision: 6, null: false

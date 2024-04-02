@@ -1,56 +1,36 @@
-<div class="container">
-  <div class="row my-4">
+<div class="row justify-content-center">
+    <div class="col-lg-2 p-2 my-4">
       <h2>掲示板に投稿する</h2>
     <% if @server.errors.any? %>
       <%= @server.errors.count %>件のエラーが発生しました
       <ul>
         <% @server.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
+          <li class="error_message"><%= message %></li>
         <% end %>
       </ul>
     <% end %>
-  </div>
-  
-<div class="now_bg col-lg-6 mb-5 p-3">
+
   <%= form_with model: @server, url: '/servers', method: :post do |f| %>
-  <div class="row pb-2">
-    <h5>サーバー画像</h5>
-    <%= f.file_field :icon %>
+   <div class="field">
+    <%= f.text_field :title,class:"text_field", placeholder: "タイトル" %>
   </div>
 
-  <div class="row pb-2">
-    <h5>掲示板名<span class="text-danger">*</span></h5>
-    <span><%= f.text_field :server_name %></span>
+  <div class="field">
+    <%= f.text_field :game_name,class:"text_field", placeholder: "ゲーム名" %>
   </div>
 
-  <div class="row pb-2">
-    <h5>ゲーム名<span class="text-danger">*</span></h5>
-    <span><%= f.text_field :game_name %></span>
-  </div>
-  
-  <div class="row pb-2">
-    <h5>通話アプリ<span class="text-danger">*</span></h5>
-    <span><%= f.text_field :tool %></span>
-  </div>
-  
-  <div class="row pb-2">
-    <h5>タイトル<span class="text-danger">*</span></h5>
-    <span><%= f.text_field :title %></span>
+  <div class="field">
+    <%= f.text_field :tool,class:"text_field", placeholder: "通話アプリ" %>
+    <p class="example">例：Discord Skype など</p>
   </div>
 
-  <div class="row pb-2">
-    <h5>コメント<span class="text-danger">*</span></h5>
-    <span><%= f.text_area :body %></span>
+  <div class="field">
+    <%= f.text_area :body,class:"text_field", placeholder: "コメント" %>
   </div>
 
-  <div class="row pb-2">
-    <span><%= f.submit '投稿', class: "now_btn btn"%></span>
+  <div class="field">
+    <%= f.submit '投稿', class: "text_field btn btn-danger" %>
   </div>
 <% end %>
   </div>
-  </div>
 </div>
-
-<style>
-
-</style>

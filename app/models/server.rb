@@ -3,12 +3,12 @@ class Server < ApplicationRecord
   
   validates :game_name, presence: true
   validates :game_name, length: { in: 2..20 }
-  validates :server_name, presence: true
-  validates :server_name, length: { in: 2..30 }
   validates :title, presence: true
   validates :title, length: { in: 2..30 }
   validates :body, presence: true
   validates :body, length: { maximum: 200 }
+  validates :tool, presence: true
+  validates :tool, length: { in: 2..20 }
 
   
   validate :user_id_uniq_check
