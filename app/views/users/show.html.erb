@@ -12,13 +12,13 @@
 <div class="row">
     <% @servers.each do |server| %>
     <span class="col-6 mb-5">
-      <div class="d-flex p-1 bg-info">
-        <div class="pe-2">
+      <div class="d-flex justify-content-between">
+        <div class="d-flex justify-content-start">
           <%= image_tag server.user.get_profile_image(50,50) %>
-        </div>
-        <div>
-          <span><%= server.title %></span><br>
-          <span class="badge bg-secondary text-light"><%= server.game_name %></span>
+          <div class="ml-2">
+            <span><%= server.title %></span><br>
+            <span class="badge bg-secondary text-light"><%= server.game_name %></span>
+          </div>
         </div>
         <div class="align-self-center">
           <%= link_to "編集", edit_server_path(server.id), class: "btn btn-success" %>

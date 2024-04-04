@@ -3,15 +3,15 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-         
+
   has_many :servers, dependent: :destroy
-  
+
   has_one_attached :profile_image
-  
+
   validates :name, presence: true
   validates :name, length: { in: 1..10 }
-  validates :name, uniqueness: true
-  
+  validates :name, uniqueness: true, on: :create
+
   def get_profile_image(width, height)
     unless profile_image.attached?
       file_path = Rails.root.join('app/assets/images/sample-author1.jpg')
@@ -19,7 +19,7 @@ class User < ApplicationRecord
     end
     profile_image.variant(resize_to_limit: [width, height]).processed
   end
-         
+
   def find_or_create_from_auth_hash(auth_hash)
     user_params = user_params_from_auth_hash(auth_hash)
     find_or_create_by(uid: user_params[:uid]) do |user|

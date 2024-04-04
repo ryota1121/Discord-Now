@@ -51,6 +51,6 @@ class ServersController < ApplicationController
   private
 
   def server_params
-    params.require(:server).permit(:game_name, :server_name, :tool, :title, :body, :icon)
+    params.require(:server).permit(:game_name, :link, :tool, :title, :body)
   end
 end

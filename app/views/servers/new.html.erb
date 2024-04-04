@@ -1,5 +1,6 @@
 <div class="row justify-content-center">
-    <div class="col-lg-2 p-2 my-4">
+  <div class="Registration card my-5">
+    <div class="m-2">
       <h2>掲示板に投稿する</h2>
     <% if @server.errors.any? %>
       <%= @server.errors.count %>件のエラーが発生しました
@@ -25,6 +26,10 @@
   </div>
 
   <div class="field">
+    <%= f.text_field :link,class:"text_field", placeholder: "招待リンク" %>
+  </div>
+
+  <div class="field">
     <%= f.text_area :body,class:"text_field", placeholder: "コメント" %>
   </div>
 
@@ -34,3 +39,5 @@
 <% end %>
   </div>
 </div>
+</div>
+

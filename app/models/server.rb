@@ -9,7 +9,7 @@ class Server < ApplicationRecord
   validates :body, length: { maximum: 200 }
   validates :tool, presence: true
   validates :tool, length: { in: 2..20 }
-
+  validates :link, presence: true
   
   validate :user_id_uniq_check
   
@@ -25,7 +25,7 @@ class Server < ApplicationRecord
   
   def self.keyword_search(keyword)
     where("game_name like ?", "%#{keyword}%")
-    .or(where("server_name like ?", "%#{keyword}%"))
+    .or(where("tool like ?", "%#{keyword}%"))
     .or(where("title like ?", "%#{keyword}%"))
     .or(where("body like ?", "%#{keyword}%"))
   end

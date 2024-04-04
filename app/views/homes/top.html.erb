@@ -51,10 +51,10 @@
           </div>
         <% else %>
           <% @game_names.each do | game_name | %>
-          <div class="game_tag ">
-            <%= link_to game_name, servers_path(game_name: game_name), class: "text-light" %>
-          </div>
-        <% end %>
+            <%= link_to servers_path(game_name: game_name), class: "game_tag d-flex align-items-center", style: "text-decoration:none;" do %>
+              <p class="m-0 text-light"><%= game_name %></p>
+            <% end %>
+          <% end %>
         <% end %>
 </div>
 

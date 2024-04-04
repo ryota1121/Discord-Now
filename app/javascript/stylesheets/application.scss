@@ -1,5 +1,11 @@
 @use '~bootstrap/scss/bootstrap';
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   background-color: #f4f1f0;
   font-family: "HiraKakuProN-W6";
@@ -40,6 +46,12 @@ footer {
 
 .index_bg_body {
   background-color: #e1736b;
+}
+
+.Registration {
+  width: 100%;
+  max-width: 300px;
+  padding: 12px;
 }
 
 .text_field {

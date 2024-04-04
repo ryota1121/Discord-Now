@@ -1,16 +1,16 @@
 <div class="row justify-content-center">
-    <div class="col-lg-2 p-2 my-4">
+  <div class="Registration card my-5">
+    <div class="m-2">
       <h2>ログイン</h2>
-      
       <%= form_with model: @user, url: user_session_path do |f| %>
       <div class="field">
         <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "text_field", placeholder: "Eメール" %>
       </div>
 
-  <div class="field">
-    <%= f.password_field :password, autocomplete: "current-password", class: "text_field", placeholder: "パスワード" %>
-    <%= link_to "パスワードを忘れた方はこちら", new_password_path(resource_name) %>
-  </div>
+    <div class="field">
+      <%= f.password_field :password, autocomplete: "current-password", class: "text_field", placeholder: "パスワード" %>
+      <%= link_to "パスワードを忘れた方はこちら", new_password_path(resource_name) %>
+    </div>
 
   <% if devise_mapping.rememberable? %>
       <%= f.check_box :remember_me %>
@@ -25,7 +25,7 @@
 <div class="mt-2 actions">
 <%= link_to "新規登録", new_registration_path(resource_name), class: "text_field btn btn-danger"  %>
 </div>
-
+</div>
 </div>
 </div>
 </div>

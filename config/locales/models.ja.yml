@@ -4,4 +4,8 @@ ja:
       server: 掲示板
     attributes:
       server:
-        server_name: 掲示板名
+        game_name: ゲーム名
+        title: タイトル
+        body: コメント
+        tool: 通話アプリ
+        link: 招待リンク
