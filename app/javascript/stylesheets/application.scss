@@ -11,7 +11,7 @@ body {
   font-family: "HiraKakuProN-W6";
 }
 
-nav {
+.navbar {
   background-color: #363234;
 }
 
@@ -59,6 +59,7 @@ footer {
 }
 
 .field {
+  padding-top: 3px;
   padding-bottom: 16px;
 }
 
@@ -66,22 +67,26 @@ footer {
   margin: 0 0 auto 0;
 }
 
+.card-text {
+  height: 300px;
+  font-family: none;
+}
 
 .pagination {
   margin: auto;
   display: flex;
+  justify-content: center;
   width: 50%;
 }
 
-.pagination span {
-  border: 1px solid #999;
-  border-radius: 20px;
-  width: 40px;
-  height: 40px;
+.pagination span ,.page_link {
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
   text-align: center;
   vertical-align: middle;
-  font-size: 22px;
   margin: 0 5px;
+  padding: 2px;
 }
 
 .pagination span a {
@@ -94,11 +99,11 @@ footer {
 }
 
 .pagination .first,  .pagination .last {
-  width: 80px;
+  width: px;
 }
 
 .pagination .prev, .pagination .next {
-  width: 60px;
+  width: px;
 }
 
 .pagination .current {

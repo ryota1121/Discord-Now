@@ -1,10 +1,15 @@
 <%= content_for(:bg_area) do %>
-  <div class="bg_area">
-    Game Nowで一緒にゲームをする仲間を見つけよう！
+  <div class="bg_area row">
+    <div class="bg_area_text col display-3 align-self-center">
+      Game Nowで一緒にゲームをする仲間を見つけよう！
+    </div>
   </div>
-  <div class="hedder_bar text-light">
-    <h2 class="m-0">仲間を募集してみよう！</h2>
-    <h2>
+
+  <div class="hedder_bar row text-center m-0 text-light ">
+    <h2 class="col-lg-auto m-0 p-0">
+      仲間を募集してみよう！
+    </h2>
+    <h2 class="col-lg-auto m-0 p-0">
       <%= link_to new_server_path, class: "main_link badge rounded-pill" do %>
         投稿してみる
       <% end %>
@@ -12,50 +17,32 @@
   </div>
 <% end %>
 
-<div class="py-4">
-    <div id="main_visual" class="carousel slide" data-bs-ride="carousel">
-      <ol class="carousel-indicators">
-        <li data-bs-target="#main_visual" data-bs-slide-to="0" class="active"></li>
-        <li data-bs-target="#main_visual" data-bs-slide-to="1"></li>
-        <li data-bs-target="#main_visual" data-bs-slide-to="2"></li>
-      </ol>
-
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <div class="carousel-caption d-none d-md-block"></div>
-          <h2 class="active_bar">今すぐ一緒にプレイできる仲間を探したいときはGame Now</h2>
+<div class="p-4">
+  <div class="pb-4">
+    <h3>
+      現在、仲間募集中のゲーム
+    </h3>
+    <div class="overflow-auto d-flex">
+      <% if @game_names.empty? %>
+        <div class="game_tag">
+          現在、募集中の<br>
+          ゲームはありません
         </div>
-        <div class="carousel-item">
-          <h2 class="active_bar">日時を指定して集まれる仲間を探したいときはGame Day</h2>
-        </div>
-        <div class="carousel-item">
-          <h2 class="active_bar">仲間を募集してみよう！</h2>
-        </div>
-        <a class="carousel-control-prev" href="#main_visual" role="button" data-bs-slide="prev">
-
-        </a>
-        <a class="carousel-control-next" href="#main_visual" role="button" data-bs-slide="next">
-
-        </a>
-      </div>
-  </div>
-</div>
-<div class="pb-4">
-  <h3>
-        募集中のゲーム
-      </h3>
-        <% if @game_names.empty? %>
-          <div class="game_tag">
-            現在、募集中の<br>
-            ゲームはありません
-          </div>
-        <% else %>
-          <% @game_names.each do | game_name | %>
-            <%= link_to servers_path(game_name: game_name), class: "game_tag d-flex align-items-center", style: "text-decoration:none;" do %>
+      <% else %>
+        <% @game_names.each do | game_name | %>
+            <%= link_to servers_path(game_name: game_name), class: "game_tag me-4", style: "text-decoration:none;" do %>
               <p class="m-0 text-light"><%= game_name %></p>
             <% end %>
-          <% end %>
         <% end %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="data p">
+    <h3>
+      Game Nowでよくプレイされるゲーム
+    </h3>
+  </div>
 </div>
 
 <style>
@@ -63,10 +50,11 @@
   background-image: url(<%= asset_path('sample.png') %>);
   height: 300px;
   background-size: cover;
+}
+
+.bg_area_text {
   color: white;
   text-align: center;
-  padding-top: 100px;
-  font-size: 50px;
 }
 
 .hedder_bar {
@@ -93,7 +81,8 @@
   height: 100px;
   width: 200px;
   border-radius: 10px;
-  background: #c8d7d2;
+  background: gray;
+  flex-shrink: 0;
   display: flex;
   justify-content: center;
   align-items: center;

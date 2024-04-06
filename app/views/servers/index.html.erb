@@ -1,6 +1,6 @@
-<div class="container">
-  <div class="row mt-3 mb-4">
-    <div class="col">
+<div class="p-4">
+<div class="row mb-4">
+    <div class="col p-0">
       <h2>掲示板リスト</h2>
         募集中のゲーム<br>
         <%= link_to "全て", servers_path, class: "badge bg-secondary text-light" %>
@@ -9,71 +9,27 @@
         <% end %>
     </div>
   </div>
-  <div class="row">
-    <% @servers.each do |server| %>
-    <span class="col-sm-6 mb-4">
-      <div class="index_bg_title d-flex p-2">
-      <div class="pe-2">
-        <%= image_tag server.user.get_profile_image(50,50) %>
-      </div>
+  <div class="row justify-content-center">
+<% @servers.each do |server| %>
+<div class="card mx-4 mb-5 p-0" style="width: 30rem;">
+    <div class="card-header d-flex">
+      <%= image_tag server.user.get_profile_image(50,50) ,class:"pe-2"%>
       <div class="">
-        <span class="server_title"><%= server.title %></span><br>
+        <h5 class="card-title m-0"><%= server.title %></h5>
         <span class="badge bg-secondary text-light"><%= server.game_name %></span>
         <span class="badge bg-secondary text-light"><%= server.tool %></span>
       </div>
-      </div>
-      <div class="server_main">
-        <div class="index_bg_body p-2">
-          <div class=""><%= server.body %></div>
-        </div>
-      </div>
-    </span>
-    <% end %>
+    </div>
+    <div class="card-body pt-0">
+    <div class="card-text overflow-auto my-2"><%= server.body %></div>
+    <a href="<%= server.link %>" class="btn btn-danger">Go somewhere</a>
+    </div>
   </div>
+<% end %>
+</div>
+
   <div class="justify-content-center">
     <%= paginate @servers %>
   </div>
-  
- 
-  <div class="row">
-    <% @servers.each do |server| %> 
-  <div class="col-mb-4">
-    <div class="card mb-3">
-      <%= image_tag server.user.get_profile_image(100,100) %>
-      <div class="card-body d-flex justify-content-beetween">
-        <h4 class="card-title"><%= server.title %><%= server.game_name %></h4><br>
-        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modal01">
-          詳しく見る
-        </button>
-      </div>
-    </div>
-  </div>
-  <% end %>
 </div>
-
-<% @servers.each do |server| %>
-<div class="modal fade" id="modal01" tabindex="-1" role="dialog" aria-labelledby="modal01-label" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="modal01-label"><%= server.title %></h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="madal-body">
-        <p class="text-center">
-          <%= image_tag server.user.get_profile_image(100,100) %>
-        </p>
-        <p><%= server.body %></p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
-        <button type="button" class="btn btn-primary">招待リンク</button>
-      </div>
-      </div>
-    </div>
-  </div>
-  <% end %>
-  
-</div>
-
 </div>
