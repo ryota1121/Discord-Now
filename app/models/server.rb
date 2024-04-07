@@ -11,6 +11,7 @@ class Server < ApplicationRecord
   validates :link, presence: true
   
   has_one_attached :icon
+  has_many :server_comments, dependent: :destroy
   
   def get_icon(width, height)
     unless icon.attached?

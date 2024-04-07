@@ -12,9 +12,12 @@ Rails.application.routes.draw do
   resources :sessions, only: %i[create destroy]
 
   devise_for :users, controllers: {
-    
   }
   resources :users, only: [:show, :edit, :update]
+  
+  resources :servers, only: [:new, :create, :index, :show, :destroy] do
+    resources :server_comments, only: [:create]
+  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   if Rails.env.development?

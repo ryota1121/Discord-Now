@@ -1,5 +1,5 @@
-<div class="p-4">
-<div class="row mb-4">
+<div class="container">
+<div class="row mt-4  mb-4">
     <div class="col p-0">
       <h2>掲示板リスト</h2>
         募集中のゲーム<br>
@@ -9,9 +9,9 @@
         <% end %>
     </div>
   </div>
-  <div class="row justify-content-center">
+  <div class="row">
 <% @servers.each do |server| %>
-<div class="card mx-4 mb-5 p-0" style="width: 30rem;">
+<div class="card me-3 mb-3 p-0" style="width: 20rem;">
     <div class="card-header d-flex">
       <%= image_tag server.user.get_profile_image(50,50) ,class:"pe-2"%>
       <div class="">
@@ -21,8 +21,11 @@
       </div>
     </div>
     <div class="card-body pt-0">
-    <div class="card-text overflow-auto my-2"><%= server.body %></div>
-    <a href="<%= server.link %>" class="btn btn-danger">Go somewhere</a>
+      <div class="card-text overflow-auto my-2"><%= server.body %></div>
+      <div class="d-flex">
+        <p class="align-middle m-0"><%= link_to "#{server.server_comments.count} コメント", server_path(server.id) %></p>
+      　<a href="<%= server.link %>" class="btn btn-danger">招待リンクをコピー</a>
+      </div>
     </div>
   </div>
 <% end %>
@@ -31,5 +34,6 @@
   <div class="justify-content-center">
     <%= paginate @servers %>
   </div>
+</div>
 </div>
 </div>

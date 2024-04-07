@@ -23,6 +23,7 @@ class ServersController < ApplicationController
 
   def show
     @server = Server.find(params[:id])
+    @server_comment = ServerComment.new
   end
 
   def edit
