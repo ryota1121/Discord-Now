@@ -1,5 +1,6 @@
 class Server < ApplicationRecord
   belongs_to :user
+  belongs_to :server
   
   validates :game_name, presence: true
   validates :game_name, length: { in: 1..20 }
@@ -12,6 +13,11 @@ class Server < ApplicationRecord
   
   has_one_attached :icon
   has_many :server_comments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
+  
+  def favorited_by?(user)
+    favorites.exists?(user_id: user.id)
+  end
   
   def get_icon(width, height)
     unless icon.attached?

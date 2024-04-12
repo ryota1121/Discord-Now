@@ -1,5 +1,5 @@
 <div class="container">
-<div class="row mt-4  mb-4">
+<div class="row mt-4 mb-4">
     <div class="col p-0">
       <h2>掲示板リスト</h2>
         募集中のゲーム<br>
@@ -22,9 +22,21 @@
     </div>
     <div class="card-body pt-0">
       <div class="card-text overflow-auto my-2"><%= server.body %></div>
-      <div class="d-flex">
-        <p class="align-middle m-0"><%= link_to "#{server.server_comments.count} コメント", server_path(server.id) %></p>
-      　<a href="<%= server.link %>" class="btn btn-danger">招待リンクをコピー</a>
+      <div class="card-footer-text d-flex justify-content-between">
+        <div class="">
+          <div class="d-flex text-dark">
+            <p class="align-middle m-0 pe-2">
+              <% if current_user.favorite?(server) %>
+                <%= link_to "#{server.favorites.count}人参加予定", server_favorite_path(server.id), method: :delete, class:"text-danger" %>
+              <% else %>
+                <%= link_to "参加する", server_favorite_path(server.id), method: :post, class:"text-black" %>
+              <% end %>
+            </p>
+            <p class="align-middle m-0"><%= link_to "#{server.server_comments.count}コメント", server_path(server.id),class:"text-black" %></p>
+          </div>
+          <span class="text-dark"><%== l(server.created_at, format: :default) %></span>
+        </div>
+      　<a href="<%= server.link %>" class="btn btn-danger">招待リンク</a>
       </div>
     </div>
   </div>

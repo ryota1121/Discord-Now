@@ -6,8 +6,11 @@ class User < ApplicationRecord
 
   has_many :servers, dependent: :destroy
   has_many :server_comments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
+  has_many :favorite_servers, through: :favorites, source: :server
+  
   has_one_attached :profile_image
-
+  
   validates :name, presence: true
   validates :name, length: { in: 1..10 }
   validates :name, uniqueness: true, on: :create
@@ -26,6 +29,18 @@ class User < ApplicationRecord
       user.update(user_params)
     end
   end
+  
+  def favorite(server)
+    favorites.find_or_create_by(server_id: server.id)
+  end
+  
+  def unfavorite(server)
+    favorites.find_by(server_id: server.id)&.destroy
+  end
+  
+  def favorite?(server)
+    favorite_servers.include?(server)
+  end  
 
 private
 

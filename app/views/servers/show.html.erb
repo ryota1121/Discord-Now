@@ -1,3 +1,25 @@
+<div class="row justify-content-center">
+  <div class="card mt-4 me-3 mb-3 p-0" style="width: 50rem;">
+    <div class="card-header d-flex">
+      <%= image_tag @server.user.get_profile_image(50,50) ,class:"pe-2"%>
+      <div class="">
+        <h5 class="card-title m-0"><%= @server.title %></h5>
+        <span class="badge bg-secondary text-light"><%= @server.game_name %></span>
+        <span class="badge bg-secondary text-light"><%= @server.tool %></span>
+      </div>
+    </div>
+    <div class="card-body pt-0">
+      <div class="card-text overflow-auto my-2"><%= @server.body %></div>
+      <div class="d-flex justify-content-between">
+        <p class="align-middle m-0 pe-2 justify-content-start"><%= link_to "#{@server.favorites.count}人参加予定", server_path(@server.id), class:"text-danger" %></p>
+        <p class="align-middle m-0 justify-content-start"><%= link_to "#{@server.server_comments.count} コメント", server_path(@server.id) %></p>
+      　<a href="" class="btn btn-danger">招待リンク</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <p><%= image_tag @server.user.get_profile_image(100,100) %></p>
 
 <h2>ゲーム名</h2>
@@ -27,3 +49,16 @@
 
 <%= link_to "編集", edit_server_path(@server.id) %>
 <%= link_to "削除", server_path(@server.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+<% if @server.favorited_by?(current_user) %>
+    <p>
+      <%= link_to server_favorite_path(@server), method: :delete do %>
+        ♥<%= @server.favorites.count %> いいね
+      <% end %>
+    </p>
+    <% else %>
+    <p>
+      <%= link_to server_favorite_path(@server), method: :post do %>
+        ♡<%= @server.favorites.count %> いいね
+      <% end %>
+    </p>
+  <% end %>

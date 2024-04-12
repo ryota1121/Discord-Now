@@ -1,6 +1,6 @@
 <%= content_for(:bg_area) do %>
-  <div class="bg_area row">
-    <div class="bg_area_text col display-3 align-self-center">
+  <div class="bg_area row m-0">
+    <div class="bg_area_text col display-3 p-0 align-self-center">
       Game Nowで一緒にゲームをする仲間を見つけよう！
     </div>
   </div>
@@ -38,12 +38,55 @@
     </div>
   </div>
 
-  <div class="data p">
+  <div class="data">
     <h3>
-      Game Nowでよくプレイされるゲーム
+      Game Nowでよくプレイされるゲーム（TOP5）
     </h3>
+    <div class="card chart-container">
+      <canvas id="chart"></canvas>
+    </div>
   </div>
 </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
+
+<script>
+      const ctx = document.getElementById("chart").getContext('2d');
+      const myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: <%== @ranking.keys %>,
+          datasets: [{
+            label: 'Game Nowでよくプレイされるゲーム',
+            backgroundColor: 'rgba(60,60,60,1)',
+            borderColor: 'rgb(60,60,60)',
+            data: <%== @ranking.values %>,
+          }]
+        },
+        options: {
+          scales: {
+            yAxes: [{
+              ticks: {
+                beginAtZero: true,
+                userCallback: function (label, index, labels) {
+                  if (Math.floor(label) === label) {
+                    return label;
+                  }
+                }
+              }
+            }]
+          }
+        },
+      });
+</script>
+
+<div class="overflow-auto d-flex">
+      <% @ranking.each do |game_name, count| %>
+        <%= link_to servers_path(game_name: game_name), class: "game_tag me-4", style: "text-decoration:none;" do %>
+          <p class="m-0 text-light"><%= game_name %>(<%= count %>)</p>
+        <% end %>
+      <% end %>
+    </div>
 
 <style>
 .bg_area {
@@ -89,4 +132,22 @@
   font-size: 20px;
   color: white;
 }
+
+@media (max-width: 599px) {
+    .bg_area_text {
+      font-size: 50px;
+    }
+  }
+
+  @media (min-width: 600px) and (max-width: 799px) {
+    .bg_area_text {
+
+    }
+  }
+
+  @media (min-width: 800px) {
+    .bg_area_text {
+
+    }
+  }
 </style>

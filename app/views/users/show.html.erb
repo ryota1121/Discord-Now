@@ -1,13 +1,32 @@
-<div class="p-4">
-<div class="row px-auto">
-<div class="col p-0 pb-4 d-flex">
-  <%= image_tag @user.get_profile_image(100,100) %>
-  <div class="px-5 d-flex align-self-center">
-    <h2 class="pe-5"><%= @user.name %>のページ</h2>
-    <p class=""><%= link_to "プロフィール画像編集", edit_user_path(@user), class: "btn btn-success align-self-end" %></p>
+<div class="container">
+<div class="row mt-4">
+  <h2 class="col-lg-auto pb-4 px-0 m-0"><%= image_tag @user.get_profile_image(100,100),class:"pe-4" %><%= @user.name %></h2>
+  <span class="col-lg-auto pb-4 align-self-center"><%= link_to "プロフィール画像編集", edit_user_path(@user), class:"btn btn-success" %>
+</div>
+
+<div class="row">
+<% @servers.each do |server| %>
+<div class="card me-3 mb-3 p-0" style="width: 20rem;">
+    <div class="card-header d-flex">
+      <%= image_tag server.user.get_profile_image(50,50) ,class:"pe-2"%>
+      <div class="">
+        <h5 class="card-title m-0"><%= server.title %></h5>
+        <span class="badge bg-secondary text-light"><%= server.game_name %></span>
+        <span class="badge bg-secondary text-light"><%= server.tool %></span>
+      </div>
+    </div>
+    <div class="card-body pt-0">
+      <div class="card-text overflow-auto my-2"><%= server.body %></div>
+      <div class="card-footer-text d-flex justify-content-between">
+        <p class="align-middle m-0 pe-2"><%= link_to "#{server.favorites.count}人参加予定", server_path(server.id) %></p>
+        <p class="align-middle m-0"><%= link_to "#{server.server_comments.count} コメント", server_path(server.id) %></p>
+      　<a href="<%= server.link %>" class="btn btn-danger">招待リンク</a>
+      </div>
+    </div>
   </div>
+<% end %>
 </div>
-</div>
+
 
 <div class="row justify-content-center">
 <% @servers.each do |server| %>
