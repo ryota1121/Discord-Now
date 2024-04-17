@@ -1,4 +1,7 @@
 class ServersController < ApplicationController
+  before_action :require_logged_in, only: [:new, :create, :edit, :update, :destroy]
+  before_action :correct_user, only: [:edit, :update, :destroy]
+
   def new
     @server = Server.new
   end
@@ -27,11 +30,9 @@ class ServersController < ApplicationController
   end
 
   def edit
-    @server = Server.find(params[:id])
   end
 
   def update
-    @server = Server.find(params[:id])
     @user = @server.user
     if @server.update(server_params)
       flash[:notice] = "success"
@@ -43,7 +44,6 @@ class ServersController < ApplicationController
   end
 
   def destroy
-    @server = Server.find(params[:id])
     @user = @server.user
     @server.destroy
     redirect_to user_path(@user)
@@ -53,5 +53,14 @@ class ServersController < ApplicationController
 
   def server_params
     params.require(:server).permit(:game_name, :link, :tool, :title, :body)
+  end
+  
+  def require_logged_in
+    redirect_to new_user_session_path unless current_user
+  end
+  
+  def correct_user
+    @server = current_user.servers.find_by_id(params[:id])
+    redirect_to root_path unless @server
   end
 end

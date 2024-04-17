@@ -26,17 +26,19 @@
         <div class="">
           <div class="d-flex text-dark">
             <p class="align-middle m-0 pe-2">
-              <% if current_user.favorite?(server) %>
+              <% if current_user && current_user.favorite?(server) %>
                 <%= link_to "#{server.favorites.count}人参加予定", server_favorite_path(server.id), method: :delete, class:"text-danger" %>
-              <% else %>
+              <% elsif current_user %>
                 <%= link_to "参加する", server_favorite_path(server.id), method: :post, class:"text-black" %>
+              <% else %>
+                <%= link_to "参加する", new_user_session_path, class: "text-block" %>
               <% end %>
             </p>
             <p class="align-middle m-0"><%= link_to "#{server.server_comments.count}コメント", server_path(server.id),class:"text-black" %></p>
           </div>
           <span class="text-dark"><%== l(server.created_at, format: :default) %></span>
         </div>
-      　<a href="<%= server.link %>" class="btn btn-danger">招待リンク</a>
+      　<div class="btn btn-danger" data-url="<%= server.link %>" id="inviteButton">招待リンク</div>
       </div>
     </div>
   </div>
@@ -47,5 +49,12 @@
     <%= paginate @servers %>
   </div>
 </div>
-</div>
-</div>
+
+<script>
+  const inviteButton = document.getElementById('inviteButton')
+  inviteButton.addEventListener('click', (e) => {
+    const url = e.target.dataset.url
+    navigator.clipboard.writeText(url)
+    alert('copied!')
+  })
+</script>

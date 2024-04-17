@@ -42,7 +42,7 @@
     <h3>
       Game Nowでよくプレイされるゲーム（TOP5）
     </h3>
-    <div class="card chart-container">
+    <div class="graph card chart-container" style="width: 40rem;">
       <canvas id="chart"></canvas>
     </div>
   </div>
@@ -80,13 +80,13 @@
       });
 </script>
 
-<div class="overflow-auto d-flex">
-      <% @ranking.each do |game_name, count| %>
-        <%= link_to servers_path(game_name: game_name), class: "game_tag me-4", style: "text-decoration:none;" do %>
-          <p class="m-0 text-light"><%= game_name %>(<%= count %>)</p>
-        <% end %>
-      <% end %>
-    </div>
+<div class="overflow-auto">
+  <% @ranking.each.with_index(1) do |data, i| %>
+    <%= link_to servers_path(game_name: data.first), class: "me-4", style: "text-decoration:none;" do %>
+      <p class="m-0 text-black btn btn-secondary"><%= i %>位:<%= data.first %>(<%= data.last %>)</p>
+    <% end %>
+  <% end %>
+</div>
 
 <style>
 .bg_area {
@@ -131,6 +131,11 @@
   align-items: center;
   font-size: 20px;
   color: white;
+}
+
+.graph {
+  height: 600px;
+  width: 600px;
 }
 
 @media (max-width: 599px) {

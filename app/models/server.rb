@@ -1,6 +1,5 @@
 class Server < ApplicationRecord
   belongs_to :user
-  belongs_to :server
   
   validates :game_name, presence: true
   validates :game_name, length: { in: 1..20 }

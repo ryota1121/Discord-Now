@@ -13,52 +13,55 @@
       <div class="d-flex justify-content-between">
         <p class="align-middle m-0 pe-2 justify-content-start"><%= link_to "#{@server.favorites.count}人参加予定", server_path(@server.id), class:"text-danger" %></p>
         <p class="align-middle m-0 justify-content-start"><%= link_to "#{@server.server_comments.count} コメント", server_path(@server.id) %></p>
-      　<a href="" class="btn btn-danger">招待リンク</a>
+      　<div class="btn btn-danger" data-url="<%= @server.link %>" id="inviteButton">招待リンク</div>
       </div>
     </div>
+    <div class="card-footer">
+    <div>
+      <% if current_user %>
+        <div>
+          <%= form_with model: [@server, @server_comment] do |f| %>
+            <div class="d-flex">
+              <div class="comment pe-2">
+                <%= f.text_area :comment, rows: '1', class: "form-control",  placeholder: "コメントをここに" %>
+              </div>
+              <div>
+                <%= f.submit "送信する", class: "btn btn-danger" %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+      
+      <p class="pt-2">コメント件数：<%= @server.server_comments.count %></p>
+      <% @server.server_comments.each do |server_comment| %>
+      <%= server_comment.created_at.strftime('%Y/%m/%d/%H:%M') %>
+        <div class="pb-3 d-flex">
+          <div class="pe-1">
+            <%= image_tag server_comment.user.get_profile_image(50,50) %>
+          </div>
+          <div class="pe-2 align-self-center">
+            <%= server_comment.user.name %>
+          </div>
+          <div class="align-self-center">
+            <%= server_comment.comment %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
   </div>
 </div>
 
 
-<p><%= image_tag @server.user.get_profile_image(100,100) %></p>
-
-<h2>ゲーム名</h2>
-<p><%= image_tag @server.get_icon(50,50) %></p>
-<p><%= @server.game_name %></p>
-
-<h2>タイトル</h2>
-<p><%= @server.title %></p>
-
-<h2>コメント</h2>
-<p><%= @server.body %></p>
-
-    <div>
-  <p>コメント件数：<%= @server.server_comments.count %></p>
-  <% @server.server_comments.each do |server_comment| %>
-    <p><%= image_tag server_comment.user.get_profile_image(100,100) %></p>
-    <%= server_comment.user.name %>
-    <%= server_comment.created_at.strftime('%Y/%m/%d') %><%= server_comment.comment %>
-  <% end %>
-</div>
-<div>
-  <%= form_with model: [@server, @server_comment] do |f| %>
-    <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
-    <%= f.submit "送信する" %>
-  <% end %>
-</div>
-
 <%= link_to "編集", edit_server_path(@server.id) %>
 <%= link_to "削除", server_path(@server.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
-<% if @server.favorited_by?(current_user) %>
-    <p>
-      <%= link_to server_favorite_path(@server), method: :delete do %>
-        ♥<%= @server.favorites.count %> いいね
-      <% end %>
-    </p>
-    <% else %>
-    <p>
-      <%= link_to server_favorite_path(@server), method: :post do %>
-        ♡<%= @server.favorites.count %> いいね
-      <% end %>
-    </p>
-  <% end %>
+
+<script>
+  const inviteButton = document.getElementById('inviteButton')
+  inviteButton.addEventListener('click', (e) => {
+    const url = e.target.dataset.url
+    navigator.clipboard.writeText(url)
+    alert('copied!')
+  })
+</script>
