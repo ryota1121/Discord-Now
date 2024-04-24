@@ -7,10 +7,10 @@ class HomesController < ApplicationController
     @servers = @servers.keyword_search(params[:keyword]) if params[:keyword].present?
     @servers = @servers.page(params[:page])
   end
-  
+
   def about
   end
-  
+
   def guest_login
     @user = User.find_or_initialize_by(email: "guest@guest.com")
     @user.password = "xxxxxxxx"

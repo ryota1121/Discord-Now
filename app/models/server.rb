@@ -20,7 +20,7 @@ class Server < ApplicationRecord
   
   def get_icon(width, height)
     unless icon.attached?
-      file_path = Rails.root.join('app/assets/images/sample-author1.jpg')
+      file_path = Rails.root.join('app/assets/images/no_image.jpg')
       icon.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
     end
     icon.variant(resize_to_limit: [width, height]).processed

@@ -1,22 +1,43 @@
-<h1>編集画面</h1>
+<div class="row justify-content-center">
+  <div class="Registration card my-5">
+    <div class="m-2">
+      <h2>投稿を編集する</h2>
+    <% if @server.errors.any? %>
+      <%= @server.errors.count %>件のエラーが発生しました
+      <ul>
+        <% @server.errors.full_messages.each do |message| %>
+          <li class="error_message"><%= message %></li>
+        <% end %>
+      </ul>
+    <% end %>
 
-<%= form_with model: @server, url: server_path(@server.id), method: :patch do |f| %>
+  <%= form_with model: @server, url: server_path(@server.id), method: :patch do |f| %>
+   <div class="field">
+    <%= f.text_field :title,class:"text_field", placeholder: "タイトル" %>
+  </div>
 
-  <h4>ゲーム名</h4>
-  <%= f.text_field :game_name %>
-  
-  <h4>icon</h4>
-  <%= f.file_field :icon %>
+  <div class="field">
+    <%= f.text_field :game_name,class:"text_field", placeholder: "ゲーム名" %>
+  </div>
 
-  <h4>サーバー名</h4>
-  <%= f.text_field :server_name %>
+  <div class="field">
+    <%= f.text_field :tool,class:"text_field", placeholder: "通話アプリ" %>
+    <p class="example">例：Discord Skype など</p>
+  </div>
 
-  <h4>タイトル</h4>
-  <%= f.text_field :title %>
+  <div class="field">
+    <%= f.text_field :link,class:"text_field", placeholder: "招待リンク" %>
+  </div>
 
-  <h4>コメント</h4>
-  <%= f.text_area :body %>
+  <div class="field">
+    <%= f.text_area :body,class:"text_field", placeholder: "コメント" %>
+  </div>
 
-  <%= f.submit '保存' %>
-
+  <div class="field">
+    <%= f.submit '保存', class: "text_field btn btn-danger" %>
+  </div>
 <% end %>
+  </div>
+</div>
+</div>
+
