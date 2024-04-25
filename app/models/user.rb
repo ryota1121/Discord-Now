@@ -8,16 +8,16 @@ class User < ApplicationRecord
   has_many :server_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :favorite_servers, through: :favorites, source: :server
-  
+
   has_one_attached :profile_image
-  
+
   validates :name, presence: true
   validates :name, length: { in: 1..10 }
   validates :name, uniqueness: true, on: :create
 
   def get_profile_image(width, height)
     unless profile_image.attached?
-      file_path = Rails.root.join('app/assets/images/sample-author1.jpg')
+      file_path = Rails.root.join('app/assets/images/no_image.jpg')
       profile_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
     end
     profile_image.variant(resize_to_limit: [width, height]).processed
@@ -29,18 +29,18 @@ class User < ApplicationRecord
       user.update(user_params)
     end
   end
-  
+
   def favorite(server)
     favorites.find_or_create_by(server_id: server.id)
   end
-  
+
   def unfavorite(server)
     favorites.find_by(server_id: server.id)&.destroy
   end
-  
+
   def favorite?(server)
     favorite_servers.include?(server)
-  end  
+  end
 
 private
 
