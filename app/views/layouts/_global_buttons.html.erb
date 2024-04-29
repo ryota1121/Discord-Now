@@ -1,0 +1,58 @@
+
+  <% if user_signed_in? %>
+    <li class="nav-item">
+      <%= link_to new_server_path, class: 'nav-link pb-3 pt-0' do%>
+        <i class="fa-solid fa-pen-to-square"></i> 投稿
+      <% end %>
+    </li>
+
+    <li class="nav-item">
+      <%= link_to servers_path, class: 'nav-link pb-3 pt-0' do %>
+        <i class="fa-solid fa-list"></i> 掲示板
+      <% end %>
+    </li>
+
+    <li class="nav-item">
+      <%= link_to user_path(current_user.id), class: 'nav-link pb-3 pt-0' do %>
+        <i class="fa-solid fa-user"></i> マイページ
+      <% end %>
+    </li>
+
+    <li class="nav-item">
+      <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link pb-3 pt-0' do %>
+        <i class="fa-solid fa-right-from-bracket"></i> ログアウト
+      <% end %>
+    </li>
+  <% else %>
+
+    <li class="nav-item">
+      <%= link_to servers_path, class: 'nav-link pb-3 pt-0' do %>
+        <i class="fa-solid fa-list"></i> 掲示板
+      <% end %>
+    </li>
+
+    <li class="nav-item">
+      <%= link_to new_user_registration_path, class: 'nav-link pb-3 pt-0' do %>
+        <i class="fa-solid fa-user-plus"></i> 新規登録
+      <% end %>
+    </li>
+
+    <li class="nav-item">
+      <%= link_to new_user_session_path, class: 'nav-link pb-3 pt-0' do %>
+        <i class="fa-solid fa-right-to-bracket"></i> ログイン
+      <% end %>
+    </li>
+
+    <li class="nav-item">
+      <%= link_to homes_guest_login_path, method: :post, class: 'nav-link pb-3 pt-0' do %>
+        <i class="fa-solid fa-users"></i> ゲストさん
+      <% end %>
+    </li>
+  <% end %>
+
+  <% if false %>
+    <%= image_tag current_user.image %>
+    <%= current_user.name %>さん
+    <%= link_to "ログアウト", log_out_path %>
+  <% end %>
+</ul>

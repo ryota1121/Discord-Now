@@ -1,6 +1,5 @@
-<div class="container">
-<div class="">
-<div class="row mt-4">
+<div class="container-fluid">
+<div class="row">
   <h2 class="col-lg-auto pb-4 px-0 m-0"><%= image_tag @user.get_profile_image(100,100),class:"pe-4" %><%= @user.name %></h2>
   <span class="col-lg-auto pb-4 align-self-center"><%= link_to "プロフィール画像編集", edit_user_path(@user), class:"btn btn-success" %>
 </div>
@@ -41,8 +40,6 @@
 </div>
 </div>
 
-
 <div class="justify-content-center mb-3">
-    <%= paginate @servers %>
-  </div>
-  </div>
+  <%= paginate @servers %>
+</div>

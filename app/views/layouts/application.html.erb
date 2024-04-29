@@ -2,7 +2,6 @@
 <html class="h-100">
   <head>
     <title>Game Now</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -14,15 +13,19 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body class="h-100" style="padding-top:56px">
-    <nav class="navbar navbar-expand-lg fixed-top navbar-dark">
-      <div class="container-fluid">
+  <body style="padding:56px 0px;">
+    <nav class="navbar navbar-expand-lg fixed-top navbar-dark px-4">
+      <div class="container-fluid p-0">
         <%= link_to 'Game Now', root_path, "data-turbolinks": "false", class: 'now_logo navbar-brand' %>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav d-flex flex-column d-lg-none">
+            <%= render 'layouts/global_buttons' %>
+          </ul>
+          <div class="ms-auto">
             <%= form_with(url: servers_path, method: :get, local: true, class: "d-flex") do |f| %>
               <%= f.search_field :keyword, value: params[:keyword], class: "form-control me-2", placeholder: "検索" %>
               <%= f.submit "検索", class: "btn btn-danger" %>
@@ -30,90 +33,21 @@
           </div>
         </div>
       </nav>
-      <%= yield(:bg_area) %>
-    <main class="container-fluid d-flex p-0">
-      <nav class="navbar navbar-expand-lg d-flex flex-column navbar-dark" id="navbarSupportedContent" style="width: 230px">
-      <div class="">
-        <div class="collapse navbar-collapse d-flex flex-column" id="navbarSupportedContent">
-          <ul class="navbar-nav d-flex flex-column">
-              <% if user_signed_in? %>
-                <li class="nav-item">
-                  <%= link_to new_server_path, class: 'nav-link' do%>
-                    <i class="fa-solid fa-pen-to-square"></i> 投稿
-                  <% end %>
-                </li>
-
-                <li class="nav-item">
-                  <%= link_to servers_path, class: 'nav-link' do %>
-                    <i class="fa-solid fa-list"></i> 掲示板
-                  <% end %>
-                </li>
-
-                <li class="nav-item">
-                  <%= link_to user_path(current_user.id), class: 'nav-link' do %>
-                    <i class="fa-solid fa-user"></i> マイページ
-                  <% end %>
-                </li>
-
-                <li class="nav-item">
-                  <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link' do %>
-                    <i class="fa-solid fa-right-from-bracket"></i> ログアウト
-                  <% end %>
-                </li>
-
-              <% else %>
-                <li class="nav-item">
-                  <%= link_to servers_path, class: 'nav-link' do %>
-                    <i class="fa-solid fa-list"></i> 掲示板
-                  <% end %>
-                </li>
-
-                <li class="nav-item">
-                  <%= link_to new_user_registration_path, class: 'nav-link' do %>
-                    <i class="fa-solid fa-user-plus"></i> 新規登録
-                  <% end %>
-                </li>
-
-                <li class="nav-item">
-                  <%= link_to new_user_session_path, class: 'nav-link' do %>
-                    <i class="fa-solid fa-right-to-bracket"></i> ログイン
-                  <% end %>
-                </li>
-
-                <li class="nav-item">
-                  <%= link_to homes_guest_login_path, method: :post, class: 'nav-link' do %>
-                    <i class="fa-solid fa-users"></i> ゲストさん
-                  <% end %>
-                </li>
-
-              <% end %>
-              <% if false %>
-                <%= image_tag current_user.image %>
-                <%= current_user.name %>さん
-                <%= link_to "ログアウト", log_out_path %>
-              <% end %>
-            </ul>
-          </div>
-        </div>
-      </nav>
+    <nav class="d-none d-lg-block bg-light side-column" id="_navbarSupportedContent" style="width: 230px">
+      <div class="collapse navbar-collapse d-block" id="_navbarSupportedContent">
+        <ul class="navbar-nav p-4">
+          <%= render 'layouts/global_buttons' %>
+        </ul>
+      </div>
+    </nav>
+    <main class="main-body p-4">
       <%= yield %>
     </main>
 
-    <footer class="py-4 text-light">
-      <div class="container text-center">
-        <ul class="nav justify-content-center mb-3">
-          <li class="nav-item">
-          </li>
-          <li class="nav-item">
-          </li>
-          <li class="nav-item">
-          </li>
-          <p>
-            <small>Copyright &copy;2024 Game Now,All Rights Reserved</small>
-          </p>
-        </ul>
+    <footer class="fixed-bottom py-3 text-light text-center" style="height:56px;">
+      <div class="">
+        Copyright &copy;2024 Game Now,All Rights Reserved
       </div>
     </footer>
-
   </body>
 </html>

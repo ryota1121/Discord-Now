@@ -112,18 +112,6 @@ footer {
   background-color: #ddd;
 }
 
-
-.bg_area {
-  background-image: url('../images/sample.png');
-  height: 300px;
-  background-size: cover;
-}
-
-.bg_area_text {
-  color: white;
-  text-align: center;
-}
-
 .hedder_bar {
   height: 100px;
   display: flex;
@@ -157,20 +145,13 @@ footer {
   color: white;
 }
 
-@media (max-width: 599px) {
-    .bg_area_text {
-      font-size: 50px;
-    }
+@media (min-width: 991px) {
+  .main-body {
+    margin-left: 230px;
   }
+}
 
-  @media (min-width: 600px) and (max-width: 799px) {
-    .bg_area_text {
-
-    }
-  }
-
-  @media (min-width: 800px) {
-    .bg_area_text {
-
-    }
+  .side-column {
+    height: 1000px;
+    position: fixed;
   }

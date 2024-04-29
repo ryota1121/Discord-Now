@@ -13,20 +13,20 @@
 
   <%= form_with model: @server, url: '/servers', method: :post do |f| %>
    <div class="field">
-    <%= f.text_field :title,class:"text_field", placeholder: "タイトル" %>
+    <%= f.text_field :title,class:"text_field", placeholder: "掲示板のタイトル" %>
   </div>
 
   <div class="field">
-    <%= f.text_field :game_name,class:"text_field", placeholder: "ゲーム名" %>
+    <%= f.text_field :game_name,class:"text_field", placeholder: "募集したいゲーム名" %>
   </div>
 
   <div class="field">
-    <%= f.text_field :tool,class:"text_field", placeholder: "通話アプリ" %>
+    <%= f.text_field :tool,class:"text_field", placeholder: "使用する通話アプリ" %>
     <p class="example">例：Discord Skype など</p>
   </div>
 
   <div class="field">
-    <%= f.text_field :link,class:"text_field", placeholder: "招待リンク" %>
+    <%= f.text_field :link,class:"text_field", placeholder: "通話アプリの招待リンク" %>
   </div>
 
   <div class="field">
