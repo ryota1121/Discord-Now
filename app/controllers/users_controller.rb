@@ -1,13 +1,13 @@
 class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
-    @servers = Server.all
-    @servers = @user.servers.page(params[:page])
+    @servers = @user.servers.order(created_at: :desc)
+    @servers = @servers.page(params[:page])
   end
 
   def edit
     @user = User.find(params[:id])
-    @servers = Server.all
+    #@servers = Server.all
   end
 
   def update

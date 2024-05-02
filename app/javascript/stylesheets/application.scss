@@ -112,19 +112,6 @@ footer {
   background-color: #ddd;
 }
 
-.hedder_bar {
-  height: 100px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #d74339;
-}
-
-.main_link {
-  color: #d74339;
-  background-color: white;
-}
-
 .active_bar {
   height: 100px;
   background: gray;
@@ -148,6 +135,12 @@ footer {
 @media (min-width: 991px) {
   .main-body {
     margin-left: 230px;
+  }
+}
+
+@media (max-width: 590px) {
+  .main-bar {
+    font-size: 20px;
   }
 }
 

@@ -1,3 +1,21 @@
+<div class="row justify-content-center">
+  <div class="Registration card my-5">
+    <div class="m-2">
+<h2>プロフィール画像編集</h2>
+<p class="m-0 p-0">プロフィール画像のみ変更することができます</p>
+
+<%= form_with model: @user do |f| %>
+
+<%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*" %>
+
+  <div class="mt-2 actions">
+    <%= f.submit "変更を保存", class: "btn btn-warning" %>
+  </div>
+<% end %>
+</div>
+</div>
+</div>
+
 <div class="container-fluid">
   <div class="row pb-4">
     <div class="col p-0">
@@ -8,11 +26,11 @@
     
   <%= form_with model: @user do |f| %>
   <div class="row p-0">
-    <div class="col pe-0 ps-0 pb-2">
+    <div class="col-12 pe-0 ps-0 pb-2">
       <%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*" %>
     </div>
-    <span class="col-lg-auto pb-4 ps-0 align-self-center">
-    <%= f.submit "変更を保存", class: "btn btn-warning" %>
+    <span class="col-12 pb-4 ps-0 align-self-center">
+      <%= f.submit "変更を保存", class: "btn btn-warning" %>
     </span>
   </div>
   <% end %>

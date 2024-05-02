@@ -1,41 +1,12 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-sm-3 p-0">
-      <div class="card me-3 mb-3 p-0" style="width: 20rem;">
-        <div class="card-header d-flex">
-          <%= image_tag @server.user.get_profile_image(50,50) ,class:"pe-2"%>
-          <div class="">
-            <h5 class="card-title m-0"><%= @server.title %></h5>
-            <span class="badge bg-secondary text-light"><%= @server.game_name %></span>
-            <span class="badge bg-secondary text-light"><%= @server.tool %></span>
-          </div>
-        </div>
-        <div class="card-body pt-0">
-          <div class="card-text overflow-auto my-2"><%= @server.body %></div>
-          <p class="m-0 justify-content-center"><%= link_to "コメントする", server_path(@server.id),class:"text-dark" %></p>
-          <div class="card-footer-text d-flex justify-content-between">
-            <div class="">
-              <div class="d-flex">
-                <p class="align-middle m-0 pe-2">
-                  <% if current_user && current_user.favorite?(@server) %>
-                    <%= link_to "#{@server.favorites.count}人参加予定", server_favorite_path(@server.id), method: :delete, class:"text-danger" %>
-                  <% elsif current_user %>
-                    <%= link_to "参加する", server_favorite_path(@server.id), method: :post, class:"text-black" %>
-                  <% else %>
-                    <%= link_to "参加する", new_user_session_path, class: "text-black" %>
-                  <% end %>
-                </p>
-                <p class="align-middle m-0"><%= link_to "#{@server.server_comments.count}コメント", server_path(@server.id),class:"text-black" %></p>
-              </div>
-              <span class="text-black"><%== l(@server.created_at, format: :default) %></span>
-            </div>
-          　<div class="btn btn-danger" data-url="<%= @server.link %>" id="inviteButton">招待リンク</div>
-          </div>
-        </div>
-      </div>
-      投稿を
-      <%= link_to "編集", edit_server_path(@server.id), class:"btn-" %>/
-      <%= link_to "削除", server_path(@server.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+      <%= render 'servers/server', server: @server %>
+      <% if @server.user == current_user %>
+        投稿を
+        <%= link_to "編集", edit_server_path(@server.id), class:"btn-" %>/
+        <%= link_to "削除", server_path(@server.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+      <% end %>
     </div>
     <div class="col-xl-9 p-0">
       <div class="mb-3 p-3 w-80" style="background-color: rgba(0, 0, 0, 0.03)">
@@ -44,7 +15,7 @@
             <%= form_with model: [@server, @server_comment] do |f| %>
               <div class="d-flex">
                 <div class="comment pe-2">
-                  <%= f.text_area :comment, rows: '1', class: "form-control",  placeholder: "コメントをここに" %>
+                  <%= f.text_area :comment, rows: '1', class: "form-control",  placeholder: "コメントをここに入力" %>
                 </div>
                 <div>
                   <%= f.submit "送信する", class: "btn btn-danger" %>

@@ -1,10 +1,23 @@
 <div class="container-fluid p-0">
-<div class="hedder_bar row text-center m-0 text-light ">
-    <h2 class="col-lg-auto m-0 p-0">
+  
+  <div class="">
+    <h3>
+      Game Nowでよくプレイされるゲーム(Top5)
+    </h3>
+    <div class="">
+      <div class="d-flex flex-column p-3" style="font-size:25px">
+        <% @ranking.each.with_index(1) do |data, i| %>
+          <%= link_to servers_path(game_name: data.first), class: "mb-4", style: "text-decoration:none;" do %>
+            <p class="m-0 text-black"><%= i %>位 : <%= data.first %> <%= data.last %>回</p>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<div class="row m-0 text-light bg-danger" style="height:100px">
+    <h2 class="main-bar m-0 p-0 d-flex justify-content-center align-self-center">
       仲間を募集してみよう！
-    </h2>
-    <h2 class="col-lg-auto m-0 p-0">
-      <%= link_to new_server_path, class: "main_link badge rounded-pill" do %>
+      <%= link_to new_server_path, class: " badge rounded-pill bg-light text-danger" do %>
         投稿してみる
       <% end %>
     </h2>
@@ -29,54 +42,4 @@
       <% end %>
     </div>
   </div>
-
-  <div class="data">
-    <h3>
-      Game Nowでよくプレイされるゲーム
-    </h3>
-    <div class="d-flex">
-      <div class="d-flex flex-column overflow-auto me-4">
-        <% @ranking.each.with_index(1) do |data, i| %>
-          <%= link_to servers_path(game_name: data.first), class: "mb-4", style: "text-decoration:none;" do %>
-            <p class="m-0 text-black btn btn-secondary"><%= i %>位:<%= data.first %>(<%= data.last %>)</p>
-          <% end %>
-        <% end %>
-      </div>
-      <div class="graph card chart-container">
-        <canvas id="chart"></canvas>
-      </div>
-    </div>
-  </div>
 </div>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
-
-<script>
-      const ctx = document.getElementById("chart").getContext('2d');
-      const myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-          labels: <%== @ranking.keys %>,
-          datasets: [{
-            label: 'Game Nowでよくプレイされるゲーム',
-            backgroundColor: 'rgba(60,60,60,1)',
-            borderColor: 'rgb(60,60,60)',
-            data: <%== @ranking.values %>,
-          }]
-        },
-        options: {
-          scales: {
-            yAxes: [{
-              ticks: {
-                beginAtZero: true,
-                userCallback: function (label, index, labels) {
-                  if (Math.floor(label) === label) {
-                    return label;
-                  }
-                }
-              }
-            }]
-          }
-        },
-      });
-</script>

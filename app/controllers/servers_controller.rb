@@ -4,6 +4,7 @@ class ServersController < ApplicationController
 
   def new
     @server = Server.new
+    @server.game_name = params[:game_name]
   end
 
   def create
@@ -18,6 +19,7 @@ class ServersController < ApplicationController
 
   def index
     @servers = Server.all
+    @servers = Server.all.order(created_at: :desc)
     @game_names = @servers.map { |o| o.game_name }.uniq
     @servers = @servers.where(game_name: params[:game_name]) if params[:game_name].present?
     @servers = @servers.keyword_search(params[:keyword]) if params[:keyword].present?

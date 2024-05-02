@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div class="row mb-4">
-    <div class="col p-0">
+    <div class="col px-0 pb-2 border-bottom">
       <h2>掲示板リスト</h2>
       <p class="m-0">募集中のゲーム</p>
         <%= link_to "全て", servers_path, class: "badge bg-secondary text-light" %>
@@ -9,43 +9,16 @@
         <% end %>
     </div>
   </div>
-  
-  <div class="row">
-    <% @servers.each do |server| %>
-    <div class="card me-3 mb-3 p-0" style="width: 21rem;">
-      <div class="card-header d-flex">
-        <%= image_tag server.user.get_profile_image(50,50) ,class:"pe-2"%>
-        <div class="">
-          <h5 class="card-title m-0"><%= server.title %></h5>
-          <span class="badge bg-secondary text-light"><%= server.game_name %></span>
-          <span class="badge bg-secondary text-light"><%= server.tool %></span>
-        </div>
-      </div>
-      <div class="card-body pt-0">
-        <div class="card-text overflow-auto my-2"><%= server.body %></div>
-        <p class="m-0 justify-content-center"><%= link_to "コメントする", server_path(server.id),class:"text-dark" %></p>
-        <div class="card-footer-text d-flex justify-content-between">
-          <div class="">
-            <div class="d-flex">
-              <p class="align-middle m-0 pe-2">
-                <% if current_user && current_user.favorite?(server) %>
-                  <%= link_to "#{server.favorites.count}人参加予定", server_favorite_path(server.id), method: :delete, class:"text-danger" %>
-                <% elsif current_user %>
-                  <%= link_to "参加する", server_favorite_path(server.id), method: :post, class:"text-black" %>
-                <% else %>
-                  <%= link_to "参加する", new_user_session_path, class: "text-black" %>
-                <% end %>
-              </p>
-              <p class="align-middle m-0"><%= link_to "#{server.server_comments.count}コメント", server_path(server.id),class:"text-black" %></p>
-            </div>
-            <span class="text-black"><%== l(server.created_at, format: :default) %></span>
-          </div>
-        　<div class="btn btn-danger" data-url="<%= server.link %>" id="inviteButton">招待リンク</div>
-        </div>
-      </div>
+
+  <% if @servers.any? %>
+    <div class="row">
+      <%= render @servers %>
     </div>
+    <%= link_to "上記投稿以外で新たに募集する", new_server_path(game_name: params[:game_name]) %>
+  <% else %>
+    <p>no-data</p>
+    <%= link_to "このゲームで新規募集する", new_server_path(game_name: params[:game_name]) %>
   <% end %>
-</div>
 
   <div class="justify-content-center">
     <%= paginate @servers %>
