@@ -1,43 +1,42 @@
-<div class="row justify-content-center">
-  <div class="Registration card my-5">
-    <div class="m-2">
-      <h2>投稿を編集する</h2>
-    <% if @server.errors.any? %>
-      <%= @server.errors.count %>件のエラーが発生しました
+<div class="pb-3">
+  <h2>投稿を編集する</h2>
+  <% if @server.errors.any? %>
+    <%= @server.errors.count %>件のエラーが発生しました
       <ul>
         <% @server.errors.full_messages.each do |message| %>
           <li class="error_message"><%= message %></li>
         <% end %>
       </ul>
-    <% end %>
-
-  <%= form_with model: @server, url: server_path(@server.id), method: :patch do |f| %>
-   <div class="field">
-    <%= f.text_field :title,class:"text_field", placeholder: "タイトル" %>
-  </div>
-
-  <div class="field">
-    <%= f.text_field :game_name,class:"text_field", placeholder: "ゲーム名" %>
-  </div>
-
-  <div class="field">
-    <%= f.text_field :tool,class:"text_field", placeholder: "通話アプリ" %>
-    <p class="example">例：Discord Skype など</p>
-  </div>
-
-  <div class="field">
-    <%= f.text_field :link,class:"text_field", placeholder: "招待リンク" %>
-  </div>
-
-  <div class="field">
-    <%= f.text_area :body,class:"text_field", placeholder: "コメント" %>
-  </div>
-
-  <div class="field">
-    <%= f.submit '保存', class: "text_field btn btn-danger" %>
-  </div>
-<% end %>
-  </div>
+  <% end %>
 </div>
+<%= form_with model: @server, url: server_path(@server.id), method: :patch do |f| %>
+  <div class="row">
+    <div class="col-12 pb-3">
+      <label class="form-label">掲示板タイトル</label>
+      <%= f.text_field :title,class:"form-control", placeholder: "投稿する掲示板のタイトルを入力" %>
+    </div>
+    <div class="col-12 pb-3">
+      <label class="form-label">ゲーム名</label>
+      <%= f.text_field :game_name,class:"form-control", placeholder: "遊びたいゲーム名を入力" %>
+    </div>
+    <div class="col-md-6 pb-3">
+      <label class="form-label">通話アプリ名</label>
+      <%= f.text_field :tool,class:"form-control", placeholder: "使用する通話アプリ名を入力" %>
+      <p class="example">例：Discord Skype など</p>
+    </div>
+    <div class="col-md-6 pb-3">
+      <label class="form-label">通話アプリのリンク</label>
+      <%= f.text_field :link,class:"form-control", placeholder: "通話アプリの招待リンクを入力" %>
+      <p class="example">例：Discordのフレンドコード サーバーへの招待リンク など</p>
+    </div>
+    <div class="col-12 pb-3">
+      <label class="form-label">コメント</label>
+      <%= f.text_area :body,class:"form-control", placeholder: "募集要項やプレイ日時など伝えたいことを入力してください" %>
+    </div>
+    <div class="col-12">
+      <%= f.submit '投稿編集', class: "btn btn-primary" %>
+    </div>
+  </div>
+  <% end %>
 </div>
 

@@ -1,35 +1,28 @@
-<div class="row justify-content-center">
-  <div class="Registration card my-5">
-    <div class="m-2">
-  <h2 class="title_center">新規登録</h2>
-
+<div class="pb-3">
+  <h2>新規登録</h2>
+</div>
 <%= form_with model: @user, url: user_registration_path do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.text_field :name, class: "text_field", placeholder: "ユーザー名" %>
-  </div>
-
-  <div class="field">
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "text_field", placeholder: "Eメール" %>
-  </div>
-
-  <div class="field">
-    <%= f.password_field :password, autocomplete: "new-password", class: "text_field", placeholder: "パスワード（６文字以上）" %>
-  </div>
-
-  <div class="field">
-    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "text_field", placeholder: "パスワード（確認用）" %>
-  </div>
-
-  <div class="mt-2 actions">
-    <%= f.submit "新規登録", class: "text_field btn btn-danger" %>
+<%= render "devise/shared/error_messages", resource: resource %>
+  <div class="row">
+    <div class="col-12 pb-3">
+      <label class="form-label">ユーザー名</label>
+      <%= f.text_field :name, class: "form-control", placeholder: "ユーザー名" %>
+    </div>
+    <div class="col-12 pb-3">
+      <label class="form-label">Email</label>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "メールアドレス" %>
+    </div>
+    <div class="col-md-6 pb-3">
+      <label class="form-label">パスワード（６文字以上）</label>
+      <%= f.password_field :password, autocomplete: "new-password", class: "form-control", placeholder: "パスワード（６文字以上）" %>
+      <p class="example">例：Discord Skype など</p>
+    </div>
+    <div class="col-md-6 pb-3">
+      <label class="form-label">パスワード（確認用）</label>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", placeholder: "パスワード（確認用）" %>
+    </div>
+    <div class="col-12">
+      <%= f.submit "新規登録", class: "btn btn-primary" %>
+    </div>
   </div>
 <% end %>
-
-<div class="mt-2">
-  <%= render "devise/shared/links" %>
-  </div>
-  </div>
-</div>
-</div>

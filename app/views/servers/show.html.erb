@@ -1,20 +1,25 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-sm-3 p-0">
+    <div class="col-sm-auto p-0 pb-3">
       <%= render 'servers/server', server: @server %>
       <% if @server.user == current_user %>
-        投稿を
-        <%= link_to "編集", edit_server_path(@server.id), class:"btn-" %>/
-        <%= link_to "削除", server_path(@server.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+      <div class="d-flex justify-content-center" style="width:21rem">
+        <div class="pe-1" style="width:100%">
+          <%= link_to "投稿編集", edit_server_path(@server.id), class:"btn btn-dark",style:"width:100%" %>
+        </div>
+        <div class="ps-1" style="width:100%">
+        <%= link_to "投稿削除", server_path(@server.id), method: :delete, "data-confirm" => "本当に削除しますか？", class:"btn btn-dark",style:"width:100%" %>
+        </div>
+      </div>
       <% end %>
     </div>
-    <div class="col-xl-9 p-0">
-      <div class="mb-3 p-3 w-80" style="background-color: rgba(0, 0, 0, 0.03)">
+    <div class="col-xxl p-0" style="width:100%">
+      <div class="mb-3 p-3 w-80 shadow" style="background-color: rgba(0, 0, 0, 0.03)">
         <% if current_user %>
           <div>
             <%= form_with model: [@server, @server_comment] do |f| %>
               <div class="d-flex">
-                <div class="comment pe-2">
+                <div class="comment pe-2" style="width:100%">
                   <%= f.text_area :comment, rows: '1', class: "form-control",  placeholder: "コメントをここに入力" %>
                 </div>
                 <div>
@@ -24,12 +29,12 @@
             <% end %>
           </div>
         <% end %>
-  
+
         <p class="pt-2">コメント件数：<%= @server.server_comments.count %></p>
         <% @server.server_comments.each do |server_comment| %>
           <div class="pb-3 d-flex">
             <div class="d-flex">
-              <div class="pe-1">
+              <div class="pe-2">
                 <%= image_tag server_comment.user.get_profile_image(50,50) %>
               </div>
               <div class="align-self-center">

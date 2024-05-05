@@ -1,24 +1,20 @@
-<div class="row justify-content-center">
-  <div class="Registration card my-5">
-    <div class="m-2">
-<h2>パスワード変更</h2>
-
+<div class="pb-3">
+  <h2>パスワード変更</h2>
+</div>
 <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
   <%= f.hidden_field :reset_password_token %>
-
-  <div class="field">
-    <%= f.password_field :password, autofocus: true, autocomplete: "new-password", class: "text_field", placeholder: "新しいパスワード（６文字以上）" %>
-  </div>
-
-  <div class="field">
-    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "text_field", placeholder: "新しいパスワード（確認用）" %>
-  </div>
-
-  <div class="mt-2 actions">
-    <%= f.submit "パスワードを変更する", class: "text_field btn btn-warning" %>
+  <div class="row">
+    <div class="col-12 pb-3">
+      <label class="form-label">新しいパスワード（６文字以上）</label>
+      <%= f.password_field :password, autofocus: true, autocomplete: "new-password", class: "form-control", placeholder: "新しいパスワード（６文字以上）" %>
+    </div>
+    <div class="col-12 pb-3">
+      <label class="form-label">新しいパスワード（確認用）</label>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", placeholder: "新しいパスワード（確認用）" %>
+    </div>
+    <div class="col-12">
+      <%= f.submit "パスワードを変更する", class: "btn btn-primary" %>
+    </div>
   </div>
 <% end %>
-</div>
-</div>
-</div>
