@@ -10,6 +10,10 @@ body {
   background-color: #f4f1f0;
 }
 
+.main-body {
+  padding: 24px;
+}
+
 .navbar {
   background-color: white;
 }
@@ -18,15 +22,29 @@ body {
   color: black;
 }
 
-.main-visual {
-  height: 700px;
-  background-image: url('../images/Game-Now.png');
-  background-size: cover;
-  background-position: bottom center;
+.side-column {
+  height: 1000px;
+  position: fixed;
 }
 
-.main-visual-btn {
-  padding-top: 560px;
+
+.top-container {
+  position: relative;
+  height: 83vh;
+}
+
+.main-visual {
+  height: 500px;
+  background-image: url('../images/game_now.jpg');
+  background-size: auto;
+  background-position: center;
+}
+
+.main-bar-position {
+  height:100px;
+  width: 100%;
+  position: absolute;
+  bottom: 0px;
 }
 
 .title_center {
@@ -132,15 +150,16 @@ body {
   color: white;
 }
 
-@media (max-width: 1700px) {
-  .main-visual {
-    height: 400px;
-  }
-}
-
 @media (min-width: 991px) {
   .main-body {
     margin-left: 230px;
+  }
+}
+
+@media (max-width: 690px) {
+  .main-visual {
+    height: 480px;
+    background-size: cover;
   }
 }
 
@@ -150,7 +169,22 @@ body {
   }
 }
 
-  .side-column {
-    height: 1000px;
-    position: fixed;
+@media (max-width: 480px) {
+  .main-visual {
+    height: 350px;
+    background-size: cover;
   }
+}
+
+@media (max-width: 384px) {
+  .main-body {
+    padding: 1.5rem 0;
+  }
+  .main-visual {
+    height: 300px;
+    background-size: cover;
+  }
+}
+
+
+

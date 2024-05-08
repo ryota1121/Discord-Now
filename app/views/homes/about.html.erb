@@ -1,5 +1,47 @@
-<% if !user_signed_in? %>
-  <%= button_to "guest", homes_guest_login_path, method: :post, class: "btn btn-success" %>
-<% end %>
+<div class="px-0 pb-2 border-bottom">
+  <h3 class="fw-bold">
+    Game Nowでよくプレイされるゲーム(Top10)
+  </h3>
+  <div class="table-responsive">
+    <table class="table table-hover">
+      <thead class="table-dark">
+        <tr>
+          <th scope="col">順位</th>
+          <th scope="col">ゲーム名</th>
+          <th scope="col">回数</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @ranking.each.with_index(1) do |data, i| %>
+          <%= link_to servers_path(game_name: data.first), style: "text-decoration:none;" do %>
+            <tr>
+              <th scope="row"><%= i %>位</th>
+              <td><%= data.first %></td>
+              <td><%= data.last %>回</td>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
 
-<%= button_to "Discordでログイン", "/auth/discord", method: :post, data: { turbo: false } %>
+<div class="pt-2">
+  <h3 class="fw-bold">
+    現在、仲間募集中のゲーム
+  </h3>
+  <div class="overflow-auto d-flex pb-4">
+    <% if @game_names.empty? %>
+      <div class="game_tag shadow">
+        現在、募集中の<br>
+        ゲームはありません
+      </div>
+    <% else %>
+      <% @game_names.each do | game_name | %>
+          <%= link_to servers_path(game_name: game_name), class: "game_tag bg-dark me-4 shadow", style: "text-decoration:none;" do %>
+            <p class="m-0 text-light"><%= game_name %></p>
+          <% end %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

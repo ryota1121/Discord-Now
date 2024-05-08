@@ -1,55 +1,31 @@
-<div class="container-fluid p-0">
+<div class="top-container container-fluid p-0">
   <div class="main-visual">
-    <div class="main-visual-btn d-flex justify-content-center">
-      <div class="pe-2">
-        <%= link_to "新規登録する", new_user_registration_path, class: 'btn btn-primary' %>
-      </div>
+  </div>
+  <div class="">
+    <div class="p-2 text-center">
+      Game Nowはゲーム友達を募集するための掲示板サイトです
+    </div>
+    <div class="d-flex justify-content-center">
+      <% if user_signed_in? %>
+        <div class="pe-2">
+          <%= link_to "新規投稿する", new_server_path, class: 'btn btn-outline-primary' %>
+        </div>
+      <% else %>
+        <div class="pe-2">
+          <%= link_to "新規登録する", new_user_registration_path, class: 'btn btn-outline-primary' %>
+        </div>
+      <% end %>
       <div class="ps-2">
-      <%= link_to "掲示板を覗いてみる", servers_path, class: 'btn btn-primary'  %>
+      <%= link_to "掲示板を覗いてみる", servers_path, class: 'btn btn-outline-primary'  %>
       </div>
     </div>
   </div>
-  <div class="row m-0 text-light bg-primary" style="height:100px">
+  <div class="main-bar-position row m-0 text-light bg-primary mt-3">
     <h2 class="main-bar m-0 p-0 d-flex justify-content-center align-self-center">
       仲間を募集してみよう！
       <%= link_to new_server_path, class: " badge rounded-pill bg-light text-primary" do %>
         投稿してみる
       <% end %>
     </h2>
-  </div>
-  <div class="pt-4">
-    <h3>
-      現在、仲間募集中のゲーム
-    </h3>
-    <div class="overflow-auto d-flex pb-4">
-      <% if @game_names.empty? %>
-        <div class="game_tag shadow">
-          現在、募集中の<br>
-          ゲームはありません
-        </div>
-      <% else %>
-        <% @game_names.each do | game_name | %>
-            <%= link_to servers_path(game_name: game_name), class: "game_tag bg-dark me-4 shadow", style: "text-decoration:none;" do %>
-              <p class="m-0 text-light"><%= game_name %></p>
-            <% end %>
-        <% end %>
-      <% end %>
-    </div>
-  </div>
-  <div class="row m-0">
-    <div class="col-auto bg-white px-3 pt-3 pb-0 shadow">
-      <h3 class="pb-3">
-        Game Nowでよくプレイされるゲーム(Top10)
-      </h3>
-      <div class="">
-        <div class="d-flex flex-column" style="font-size:25px">
-          <% @ranking.each.with_index(1) do |data, i| %>
-            <%= link_to servers_path(game_name: data.first), class: "pb-3", style: "text-decoration:none;" do %>
-              <p class="m-0 text-black"><%= i %>位 : <%= data.first %> <%= data.last %>回</p>
-            <% end %>
-          <% end %>
-        </div>
-      </div>
-    </div>
   </div>
 </div>

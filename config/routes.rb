@@ -13,7 +13,12 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: {
   }
-  resources :users, only: [:show, :edit, :update]
+  
+  resources :users, only: [:show, :edit, :update] do
+    member do
+      get :favorites
+    end
+  end
   
   resources :servers, only: [:new, :create, :index, :show, :destroy] do
     resources :server_comments, only: [:create]

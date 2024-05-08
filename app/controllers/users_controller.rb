@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :set_user, only: [:favoris]
+  
   def show
     @user = User.find(params[:id])
     @servers = @user.servers.order(created_at: :desc)
@@ -7,7 +9,6 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
-    #@servers = Server.all
   end
 
   def update
@@ -21,10 +22,20 @@ class UsersController < ApplicationController
     server.destroy
     redirect_to user_path
   end
+  
+  def favorites
+    favorites = Favorite.where(user_id: @user.id).pluck(:server_id)
+    @favorite_servers = Server.find(favorites)
+  end
 
+  
   private
 
   def user_params
     params.require(:user).permit(:name, :profile_image)
+  end
+  
+  def set_user
+    @user = User.find(params[:id])
   end
 end

@@ -1,13 +1,13 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-sm-auto p-0 pb-3">
+    <div class="show-card col-sm-auto p-0 mb-3">
       <%= render 'servers/server', server: @server %>
       <% if @server.user == current_user %>
       <div class="d-flex justify-content-center" style="width:21rem">
-        <div class="pe-1" style="width:100%">
+        <div class="pe-1 shadow" style="width:100%">
           <%= link_to "投稿編集", edit_server_path(@server.id), class:"btn btn-dark",style:"width:100%" %>
         </div>
-        <div class="ps-1" style="width:100%">
+        <div class="ps-1 shadow" style="width:100%">
         <%= link_to "投稿削除", server_path(@server.id), method: :delete, "data-confirm" => "本当に削除しますか？", class:"btn btn-dark",style:"width:100%" %>
         </div>
       </div>
@@ -23,7 +23,7 @@
                   <%= f.text_area :comment, rows: '1', class: "form-control",  placeholder: "コメントをここに入力" %>
                 </div>
                 <div>
-                  <%= f.submit "送信する", class: "btn btn-danger" %>
+                  <%= f.submit "送信する", class: "btn btn-dark" %>
                 </div>
               </div>
             <% end %>
@@ -59,6 +59,6 @@
   inviteButton.addEventListener('click', (e) => {
     const url = e.target.dataset.url
     navigator.clipboard.writeText(url)
-    alert('copied!')
+    alert('コピーしました！')
   })
 </script>

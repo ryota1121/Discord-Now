@@ -9,26 +9,25 @@
   </div>
   <div class="card-body py-0 mb-2">
     <div class="card-text overflow-auto my-2"><%= server.body %></div>
-    <% if params[:action] == "show" && params[:controller] == "servers" %>
-      <%= render "servers/join_button_show", server: server %>
-    <% else %>
-      <%= link_to server_path(server.id),class:"text-light", style: "text-decoration:none;" do %>
-        <p class="card-link m-0 d-flex justify-content-center rounded-pill bg-dark">コメント・参加申請はこちら</p>
-      <% end %>
-    <% end %>
   </div>
   <div class="card-footer">
-    <div class="card-footer-text d-flex justify-content-between">
-      <div class="">
-        <div class="d-flex">
-          <p class="align-middle m-0 pe-2">
+    <div class="card-footer-text">
+      <div class="d-flex justify-content-between pb-1">
+        <div class="d-flex justify-content-between">
+          <p class="justify-content-start m-0 pe-2">
             <%= "#{server.favorites.count}人参加予定" %>
           </p>
-          <p class="align-middle m-0"><%= "#{server.server_comments.count}コメント" %></p>
+          <p class="justify-content-start m-0 pe-2">
+            <%= "#{server.server_comments.count}コメント" %>
+          </p>
         </div>
-        <span class="text-black"><%== l(server.created_at, format: :default) %></span>
+        <span class="text-black justify-content-end"><%== l(server.created_at, format: :default) %></span>
       </div>
-    　<div class="btn btn-danger" data-url="<%= server.link %>" id="inviteButton">リンクをコピー</div>
+      <% if params[:action] == "show" && params[:controller] == "servers" %>
+        <%= render "servers/join_button_show", server: server %>
+      <% else %>
+        <%= link_to "コメント・参加申請はこちら",server_path(server.id),class:"btn btn-dark",style:"width:100%" %>
+      <% end %>
     </div>
   </div>
 </div>

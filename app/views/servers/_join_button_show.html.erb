@@ -1,9 +1,41 @@
-<% if current_user && current_user.favorite?(server) %>
-  <%= link_to server_favorite_path(server.id), method: :delete, class:"text-light", style: "text-decoration:none;" do %>
-    <p class="card-link m-0 d-flex justify-content-center rounded-pill bg-primary">参加を取りやめる</p>
+<div class="d-flex justify-content-center">
+  <div class="pe-1">
+  <% if current_user && current_user.favorite?(server) %>
+    <%= link_to "参加をやめる", server_favorite_path(server.id), method: :delete, class:"btn btn-primary",style:"width:143px" %>
+  <% else %>
+    <%= link_to "参加する", server_favorite_path(server.id), method: :post, class:"btn btn-danger",style:"width:143px" %>
   <% end %>
-<% else %>
-  <%= link_to server_favorite_path(server.id), method: :post, class:"text-light", style: "text-decoration:none;" do %>
-    <p class="card-link m-0 d-flex justify-content-center rounded-pill bg-danger">参加する</p>
-  <% end %>
-<% end %>
+  </div>
+
+  <div class="ps-1">
+    <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal" style="width:143px;">
+      招待リンク
+    </button>
+  </div>
+  </div>
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel"><%= server.tool %>のリンク</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <%= server.link %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <div class="btn btn-primary" data-url="<%= server.link %>" id="inviteButton" style:"width:100%;">リンクをコピー</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+  const inviteButton = document.getElementById('inviteButton')
+  inviteButton.addEventListener('click', (e) => {
+    const url = e.target.dataset.url
+    navigator.clipboard.writeText(url)
+    alert('コピーしました！')
+  })
+</script>

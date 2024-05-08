@@ -1,25 +1,25 @@
 <div class="pb-3">
-  <h2>ログイン</h2>
+  <h2 class="fw-bold">ログイン</h2>
   <%= render "devise/shared/error_messages", resource: resource %>
 </div>
 <%= form_with model: @user, url: user_session_path do |f| %>
-  <div class="row">
-    <div class="col-12 pb-3">
+  <div class="">
+    <div class="col-xl-4 px-0 pb-3">
       <label class="form-label">Email</label>
       <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "Eメール" %>
     </div>
-    <div class="col-12 pb-3">
+    <div class="col-xl-4 px-0 pb-3">
       <label class="form-label">パスワード</label>
       <%= f.password_field :password, autocomplete: "current-password", class: "form-control", placeholder: "パスワード" %>
       <%= link_to "パスワードを忘れた方はこちら", new_password_path(resource_name) %>
     </div>
-    <div class="pb-3">
+    <div class="pb-4">
       <% if devise_mapping.rememberable? %>
         <%= f.check_box :remember_me %>
         <%= f.label :remember_me %>
       <% end %>
     </div>
-    <div class="col-12">
+    <div class="col-xl-4 px-0">
       <%= f.submit "ログイン", class: "btn btn-primary" %>
     </div>
   </div>
