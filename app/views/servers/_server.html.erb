@@ -1,13 +1,28 @@
 <div class="card me-3 mb-3 p-0 shadow" style="width:21rem">
-  <div class="card-header d-flex">
-    <%= image_tag server.user.get_profile_image(50,50) ,class:"pe-2"%>
-    <div class="">
-      <h5 class="card-title m-0"><%= server.title %></h5>
-      <span class="badge bg-dark text-light"><%= server.game_name %></span>
-      <span class="badge bg-dark text-light"><%= server.tool %></span>
+  <div class="card-header d-flex justify-content-between">
+    <div class="d-flex">
+      <%= image_tag server.user.get_profile_image(50,50) ,class:"pe-2"%>
+      <div>
+        <h5 class="card-title m-0"><%= server.title %></h5>
+        <span class="badge bg-dark text-light"><%= server.game_name %></span>
+        <span class="badge bg-dark text-light"><%= server.tool %></span>
+      </div>
     </div>
+    <% if server.user == current_user %>
+    <div class="align-self-center dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      <i class="fa-solid fa-gear"></i>
+    </button>
+    <ul class="dropdown-menu bg-light">
+      <li><%= link_to "投稿編集", edit_server_path(server.id), class:"dropdown-item" %></li>
+      <li><hr class="dropdown-divider"></li>
+      <li><%= link_to "投稿削除", server_path(server.id), method: :delete, "data-confirm" => "本当に削除しますか？", class:"dropdown-item" %></li>
+    </ul>
+  </div>
+  <% end %>
   </div>
   <div class="card-body py-0 mb-2">
+    <div class="my-2 fw-bold border-bottom">集合時間：<%= l(server.play, format: :japanese) %></div>
     <div class="card-text overflow-auto my-2"><%= server.body %></div>
   </div>
   <div class="card-footer">
@@ -21,12 +36,12 @@
             <%= "#{server.server_comments.count}コメント" %>
           </p>
         </div>
-        <span class="text-black justify-content-end"><%== l(server.created_at, format: :default) %></span>
+        <span class="text-black justify-content-end">投稿日 <%= l(server.created_at, format: :default) %></span>
       </div>
       <% if params[:action] == "show" && params[:controller] == "servers" %>
         <%= render "servers/join_button_show", server: server %>
       <% else %>
-        <%= link_to "コメント・参加申請はこちら",server_path(server.id),class:"btn btn-dark",style:"width:100%" %>
+        <%= link_to "コメント・参加申請はこちら", server_path(server.id), data: { turbolinks: false }, class:"btn btn-dark",style:"width:100%" %>
       <% end %>
     </div>
   </div>

@@ -1,40 +1,50 @@
 <div class="pb-3">
   <h2 class="fw-bold">掲示板に投稿する</h2>
-  <% if @server.errors.any? %>
-    <%= @server.errors.count %>件のエラーが発生しました
-    <ul>
-      <% @server.errors.full_messages.each do |message| %>
-        <li class="error_message"><%= message %></li>
-      <% end %>
-    </ul>
-  <% end %>
 </div>
 <%= form_with model: @server, url: '/servers' do |f| %>
-  <div class="">
-    <div class="col-xl-4 px-0 pb-3">
+  <% errors = f.object.errors %>
+  <div class="row">
+    <div class="col-xl-5 pe-3 pb-3">
       <label class="form-label">掲示板タイトル</label>
+      <%= tag.div "#{errors.full_messages_for(:title).first}", class: "error_message" if errors.any? %>
       <%= f.text_field :title,class:"form-control", placeholder: "投稿する掲示板のタイトルを入力" %>
     </div>
-    <div class="col-xl-4 px-0 pb-3">
+    <div class="col-xl-5 pe-3 pb-3">
       <label class="form-label">ゲーム名</label>
+      <%= tag.div "#{errors.full_messages_for(:game_name).first}", class: "error_message" if errors.any? %>
       <%= f.text_field :game_name,class:"form-control", placeholder: "遊びたいゲーム名を入力" %>
     </div>
-    <div class="col-xl-4 px-0 pb-3">
+    <div class="col-xl-5 pe-3 pb-3">
       <label class="form-label">通話アプリ名</label>
+      <%= tag.div "#{errors.full_messages_for(:tool).first}", class: "error_message" if errors.any? %>
       <%= f.text_field :tool,class:"form-control", placeholder: "使用する通話アプリ名を入力" %>
-      <p class="example">例：Discord Skype など</p>
+      <p class="example">- 例：Discord Skype など</p>
     </div>
-    <div class="col-xl-4 px-0 pb-3">
+    <div class="col-xl-5 pe-3 pb-3">
       <label class="form-label">通話アプリのリンク</label>
+      <%= tag.div "#{errors.full_messages_for(:link).first}", class: "error_message" if errors.any? %>
       <%= f.text_field :link,class:"form-control", placeholder: "通話アプリの招待リンクを入力" %>
-      <p class="example">例：Discordのフレンドコード サーバーへの招待リンク など</p>
+      <p class="example">- 例：Discordのフレンドコード サーバーへの招待リンク など</p>
     </div>
-    <div class="col-xl-4 px-0 pb-4">
+    <div class="col-xl-5 pe-3 pb-3">
+      <label class="form-label">募集日時</label>
+      <%= tag.div "#{errors.full_messages_for(:play).first}", class: "error_message" if errors.any? %>
+      <%= f.datetime_field :play,class:"form-control" %>
+      <p class="example">- ゲームをプレイする日時</p>
+    </div>
+    <div class="col-xl-5 pe-3 pb-3">
+      <label class="form-label">掲載終了日時</label>
+      <%= tag.div "#{errors.full_messages_for(:end).first}", class: "error_message" if errors.any? %>
+      <%= f.datetime_field :end,class:"form-control" %>
+      <p class="example">- 掲載終了日時を過ぎると掲示板に表示されなくなります</p>
+    </div>
+    <div class="col-xl-5 pb-4">
       <label class="form-label">コメント</label>
+      <%= tag.div "#{errors.full_messages_for(:body).first}", class: "error_message" if errors.any? %>
       <%= f.text_area :body,class:"form-control", placeholder: "募集要項やプレイ日時など伝えたいことを入力してください" %>
     </div>
-    <div class="col-xl-4 px-0">
-      <%= f.submit '新規投稿', class: "btn btn-primary" %>
+    <div class="col-xl-12">
+      <%= f.submit '新規投稿', class: "btn btn-warning" %>
     </div>
   </div>
   <% end %>

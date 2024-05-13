@@ -1,6 +1,6 @@
 class Server < ApplicationRecord
   belongs_to :user
-  
+
   validates :game_name, presence: true
   validates :game_name, length: { in: 1..20 }
   validates :title, presence: true
@@ -9,15 +9,18 @@ class Server < ApplicationRecord
   validates :tool, presence: true
   validates :tool, length: { in: 1..20 }
   validates :link, presence: true
-  
+  validates :play, presence: true
+  validates :end, presence: true
+
+
   has_one_attached :icon
   has_many :server_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
-  
+
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
   end
-  
+
   def get_icon(width, height)
     unless icon.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpg')
@@ -25,12 +28,12 @@ class Server < ApplicationRecord
     end
     icon.variant(resize_to_limit: [width, height]).processed
   end
-  
+
   def self.keyword_search(keyword)
     where("game_name like ?", "%#{keyword}%")
     .or(where("tool like ?", "%#{keyword}%"))
     .or(where("title like ?", "%#{keyword}%"))
     .or(where("body like ?", "%#{keyword}%"))
   end
-  
+
 end

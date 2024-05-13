@@ -5,7 +5,9 @@ ja:
     attributes:
       server:
         game_name: ゲーム名
-        title: タイトル
+        title: 掲示板タイトル
         body: コメント
-        tool: 通話アプリ
-        link: 招待リンク
+        tool: 通話アプリ名
+        link: 通話アプリのリンク
+        play: 募集日時
+        end: 掲載終了日

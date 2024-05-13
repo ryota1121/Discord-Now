@@ -2,16 +2,6 @@
   <div class="row">
     <div class="show-card col-sm-auto p-0 mb-3">
       <%= render 'servers/server', server: @server %>
-      <% if @server.user == current_user %>
-      <div class="d-flex justify-content-center" style="width:21rem">
-        <div class="pe-1 shadow" style="width:100%">
-          <%= link_to "投稿編集", edit_server_path(@server.id), class:"btn btn-dark",style:"width:100%" %>
-        </div>
-        <div class="ps-1 shadow" style="width:100%">
-        <%= link_to "投稿削除", server_path(@server.id), method: :delete, "data-confirm" => "本当に削除しますか？", class:"btn btn-dark",style:"width:100%" %>
-        </div>
-      </div>
-      <% end %>
     </div>
     <div class="col-xxl p-0" style="width:100%">
       <div class="mb-3 p-3 w-80 shadow" style="background-color: rgba(0, 0, 0, 0.03)">
@@ -23,7 +13,7 @@
                   <%= f.text_area :comment, rows: '1', class: "form-control",  placeholder: "コメントをここに入力" %>
                 </div>
                 <div>
-                  <%= f.submit "送信する", class: "btn btn-dark" %>
+                  <%= f.submit "送信する", class: "btn btn-warning" %>
                 </div>
               </div>
             <% end %>

@@ -1,15 +1,34 @@
 <div class="container-fluid">
-<div class="row mb-4 border-bottom">
-  <h2 class="col-lg-auto pb-3 px-0 m-0"><%= image_tag @user.get_profile_image(100,100),class:"pe-4" %><%= @user.name %></h2>
-  <span class="col-lg-auto pb-4 align-self-center"><%= link_to "プロフィール画像編集", edit_user_path(@user), class:"btn btn-dark" %>
-  <%= link_to "いいねした投稿", favorites_user_path(@user) %>
-</div>
+  <div class="row mb-4 border-bottom">
+    <h2 class="col-lg-auto pb-3 ps-0 pe-4 m-0"><%= image_tag @user.get_profile_image(100,100),class:"shadow" %></h2><h2 class="col align-self-center pb-3"><%= @user.name %></h2>
+    <div class="col-lg-auto px-0 pb-4 align-self-center dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="fa-solid fa-gear"></i>
+      </button>
+      <ul class="dropdown-menu bg-light">
+        <li><%= link_to "プロフィール画像編集", edit_user_path(@user), class:"dropdown-item" %></li>
+        <li><hr class="dropdown-divider"></li>
+        <li><%= link_to "参加予定の掲示板リスト", favorites_user_path(@user), class:"dropdown-item" %></li>
+      </ul>
+    </div>
+  </div>
 
- <div class="row">
-  <%= render @servers %>
-</div>
-</div>
+  <% if @servers.any? %>
+   <div class="row">
+    <%= render @servers %>
+  </div>
+  <% else %>
+    <div class="row">
+      <h4 class="m-0 p-0 pb-4">現在、投稿している掲示板はありません</h4>
+    </div>
+    <div class="row">
+      <%= link_to new_server_path,class: "p-0" do %>
+        <p class="btn btn-warning p-2 shadow">新規投稿する</p>
+      <% end %>
+    </div>
+  <% end %>
 
-<div class="justify-content-center pt-4">
-  <%= paginate @servers %>
+  <div class="justify-content-center pt-4">
+    <%= paginate @servers %>
+  </div>
 </div>

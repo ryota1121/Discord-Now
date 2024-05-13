@@ -16,7 +16,7 @@ ja:
     - 金
     - 土
     abbr_month_names:
-    - 
+    -
     - 1月
     - 2月
     - 3月
@@ -42,7 +42,7 @@ ja:
       long: "%Y年%m月%d日(%a)"
       short: "%m/%d"
     month_names:
-    - 
+    -
     - 1月
     - 2月
     - 3月
@@ -176,7 +176,9 @@ ja:
   time:
     am: 午前
     formats:
-      default: "%Y/%m/%d %H:%M"
+      default: "%Y/%m/%d"
+      japanese: "%Y年%m月%d日 %H時%M分"
       long: "%Y/%m/%d %H:%M"
       short: "%m/%d %H:%M"
+
     pm: 午後

@@ -40,11 +40,16 @@ body {
   background-position: center;
 }
 
-.main-bar-position {
-  height:100px;
+.main-btn {
+  padding-bottom: 120px;
+}
+
+.main-bar {
+  height: 100px;
   width: 100%;
-  position: absolute;
-  bottom: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .title_center {
@@ -154,6 +159,15 @@ body {
   .main-body {
     margin-left: 230px;
   }
+  .search-bar {
+    width: 40%;
+  }
+}
+
+@media (max-width: 991px) {
+  .search-bar {
+    padding-bottom: 8px;
+  }
 }
 
 @media (max-width: 690px) {
@@ -177,14 +191,22 @@ body {
 }
 
 @media (max-width: 384px) {
-  .main-body {
-    padding: 1.5rem 0;
-  }
   .main-visual {
     height: 300px;
     background-size: cover;
   }
 }
 
+.field_with_errors input {
+  border-color: #dc3545;
+}
+
+.field_with_errors textarea {
+  border-color: #dc3545;
+}
+
+.error_message {
+  color: #dc3545;
+}
 
 

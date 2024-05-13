@@ -1,47 +1,61 @@
-<div class="px-0 pb-2 border-bottom">
-  <h3 class="fw-bold">
-    Game Nowでよくプレイされるゲーム(Top10)
-  </h3>
-  <div class="table-responsive">
-    <table class="table table-hover">
-      <thead class="table-dark">
-        <tr>
-          <th scope="col">順位</th>
-          <th scope="col">ゲーム名</th>
-          <th scope="col">回数</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @ranking.each.with_index(1) do |data, i| %>
-          <%= link_to servers_path(game_name: data.first), style: "text-decoration:none;" do %>
-            <tr>
-              <th scope="row"><%= i %>位</th>
-              <td><%= data.first %></td>
-              <td><%= data.last %>回</td>
-            </tr>
-          <% end %>
-        <% end %>
-      </tbody>
-    </table>
+<div class="container-fluid">
+  <div class="row mb-4">
+    <h2 class="fw-bold px-0 pb-2 m-0 border-bottom">
+      Game Nowランキング(Top10)
+    </h2>
   </div>
-</div>
-
-<div class="pt-2">
-  <h3 class="fw-bold">
-    現在、仲間募集中のゲーム
-  </h3>
-  <div class="overflow-auto d-flex pb-4">
-    <% if @game_names.empty? %>
-      <div class="game_tag shadow">
-        現在、募集中の<br>
-        ゲームはありません
+  <div class="row">
+    <div class="col-xl-6 ps-0 pe-2 pb-2">
+      <h5 class="fw-bold">
+        Game Nowでよくプレイされるゲーム
+      </h5>
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead class="table-dark">
+            <tr>
+              <th scope="col">順位</th>
+              <th scope="col">ゲーム名</th>
+              <th scope="col">回数</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @game_rank.each.with_index(1) do |data, i| %>
+              <%= link_to servers_path(game_name: data.first), style: "text-decoration:none;" do %>
+                <tr>
+                  <th scope="row"><%= i %>位</th>
+                  <td><%= data.first %></td>
+                  <td><%= data.last %>回</td>
+                </tr>
+              <% end %>
+            <% end %>
+          </tbody>
+        </table>
       </div>
-    <% else %>
-      <% @game_names.each do | game_name | %>
-          <%= link_to servers_path(game_name: game_name), class: "game_tag bg-dark me-4 shadow", style: "text-decoration:none;" do %>
-            <p class="m-0 text-light"><%= game_name %></p>
-          <% end %>
-      <% end %>
-    <% end %>
+    </div>
+    <div class="col-xl-6 ps-2 pe-0 pb-2">
+      <h5 class="fw-bold">
+        Game Nowによく投稿してくれるユーザー
+      </h5>
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead class="table-dark">
+            <tr>
+              <th scope="col">順位</th>
+              <th scope="col">ユーザー名</th>
+              <th scope="col">回数</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @user_rank.each.with_index(1) do |user, i| %>
+                <tr>
+                  <th scope="row"><%= i %>位</th>
+                  <td><%= user.name %></td>
+                  <td><%= user.servers.size %>回</td>
+                </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
 </div>

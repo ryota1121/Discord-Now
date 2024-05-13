@@ -18,8 +18,7 @@ class ServersController < ApplicationController
   end
 
   def index
-    @servers = Server.all
-    @servers = Server.all.order(created_at: :desc)
+    @servers = Server.where(play: ..Time.current, end: Time.current..)
     @game_names = @servers.map { |o| o.game_name }.uniq
     @servers = @servers.where(game_name: params[:game_name]) if params[:game_name].present?
     @servers = @servers.keyword_search(params[:keyword]) if params[:keyword].present?
@@ -37,10 +36,10 @@ class ServersController < ApplicationController
   def update
     @user = @server.user
     if @server.update(server_params)
-      flash[:notice] = "success"
+      flash[:notice] = "編集完了しました"
       redirect_to user_path(@user)
     else
-      flash.now[:alert] = "failed"
+      flash.now[:alert] = "編集できませんでした"
       render :edit
     end
   end
@@ -54,7 +53,7 @@ class ServersController < ApplicationController
   private
 
   def server_params
-    params.require(:server).permit(:game_name, :link, :tool, :title, :body)
+    params.require(:server).permit(:game_name, :link, :tool, :title, :body, :play, :end)
   end
   
   def require_logged_in

@@ -24,8 +24,13 @@ class UsersController < ApplicationController
   end
   
   def favorites
-    favorites = Favorite.where(user_id: @user.id).pluck(:server_id)
-    @favorite_servers = Server.find(favorites)
+    @plefix = "参加予定の"
+    @user = User.find(params[:id])
+    @servers = @user.favorite_servers.page(params[:page])
+    @game_names = @servers.map { |o| o.game_name }.uniq
+    render 'servers/index'
+    #favorites = Favorite.where(user_id: @user.id).pluck(:server_id)
+    #@favorite_servers = Server.find(favorites)
   end
 
   
