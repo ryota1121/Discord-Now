@@ -1,5 +1,5 @@
 <div class="card me-3 mb-3 p-0 shadow" style="width:21rem">
-  <div class="card-header d-flex justify-content-between">
+  <div class="card-header d-flex justify-content-between" style="padding:12px;">
     <div class="d-flex">
       <%= image_tag server.user.get_profile_image(50,50) ,class:"pe-2"%>
       <div>
@@ -21,11 +21,11 @@
   </div>
   <% end %>
   </div>
-  <div class="card-body py-0 mb-2">
-    <div class="my-2 fw-bold border-bottom">集合時間：<%= l(server.play, format: :japanese) %></div>
-    <div class="card-text overflow-auto my-2"><%= server.body %></div>
+  <div class="card-body py-0 mb-2" style="padding:0px 12px;">
+    <div class="my-2 fw-bold border-bottom"><i class="fa-regular fa-clock"></i> 集合時間：<%= l(server.play, format: :japanese) %></div>
+    <div class="card-text overflow-auto"><%= server.body %></div>
   </div>
-  <div class="card-footer">
+  <div class="card-footer" style="padding:12px;">
     <div class="card-footer-text">
       <div class="d-flex justify-content-between pb-1">
         <div class="d-flex justify-content-between">

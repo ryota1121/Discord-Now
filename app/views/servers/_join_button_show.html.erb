@@ -1,16 +1,20 @@
 <div class="d-flex justify-content-center">
   <div class="pe-1">
   <% if current_user && current_user.favorite?(server) %>
-    <%= link_to "参加をやめる", server_favorite_path(server.id), method: :delete, class:"btn btn-primary",style:"width:143px" %>
+    <%= link_to "参加をやめる", server_favorite_path(server.id), method: :delete, class:"btn btn-primary",style:"width:151px" %>
   <% else %>
-    <%= link_to "参加する", server_favorite_path(server.id), method: :post, class:"btn btn-danger",style:"width:143px" %>
+    <%= link_to "参加する", server_favorite_path(server.id), method: :post, class:"btn btn-danger",style:"width:151px" %>
   <% end %>
   </div>
 
   <div class="ps-1">
-    <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal" style="width:143px;">
-      招待リンク
-    </button>
+    <% if current_user %>
+      <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal" style="width:151px;">
+        招待リンク
+      </button>
+    <% else %>
+      <%= link_to "招待リンク", new_user_session_path, class: "btn btn-dark", style:"width:151px;" %>
+    <% end %>
   </div>
   </div>
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

@@ -7,6 +7,7 @@
     <div class="col-xl-4 px-0 pb-3">
       <label class="form-label">ユーザー名</label>
       <%= f.text_field :name, class: "form-control", placeholder: "ユーザー名" %>
+      <p class="example">- 後から変更することができません</p>
     </div>
     <div class="col-xl-4 px-0 pb-3">
       <label class="form-label">Email</label>
@@ -15,7 +16,6 @@
     <div class="col-xl-4 px-0 pb-3">
       <label class="form-label">パスワード（６文字以上）</label>
       <%= f.password_field :password, autocomplete: "new-password", class: "form-control", placeholder: "パスワード（６文字以上）" %>
-      <p class="example">- 例：Discord Skype など</p>
     </div>
     <div class="col-xl-4 px-0 pb-4">
       <label class="form-label">パスワード（確認用）</label>

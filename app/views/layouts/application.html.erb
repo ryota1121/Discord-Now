@@ -15,7 +15,7 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body class="bg-light" style="padding:56px 0px;">
+  <body class="bg-body-secondary" style="padding:56px 0px;">
     <nav class="navbar navbar-expand-lg bg-dark fixed-top px-4 shadow-sm d-flex">
       <%= link_to 'Game Now', root_path, "data-turbolinks": "false", class: 'navbar-brand text-light' %>
       <button class="navbar-toggler text-light p-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -27,73 +27,129 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav d-flex flex-column d-lg-none">
           <% if user_signed_in? %>
-    <li class="nav-item">
-      <%= link_to new_server_path, class: 'nav-link pb-3 pt-2 text-light' do%>
-        <i class="fa-solid fa-pen-to-square"></i> 投稿
-      <% end %>
-    </li>
-
-    <li class="nav-item">
-      <%= link_to servers_path, class: 'nav-link pb-3 pt-0 text-light' do %>
-        <i class="fa-solid fa-list"></i> 掲示板
-      <% end %>
-    </li>
-
-    <li class="nav-item">
-      <%= link_to about_path, class: 'nav-link pb-3 pt-0 text-light' do %>
-        <i class="fa-solid fa-ranking-star"></i> ランキング
-      <% end %>
-    </li>
-
-    <li class="nav-item">
-      <%= link_to user_path(current_user.id), class: 'nav-link pb-3 pt-0 text-light' do %>
-        <i class="fa-solid fa-user"></i> マイページ
-      <% end %>
-    </li>
-
-    <li class="nav-item">
-      <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link pb-3 pt-0 text-light' do %>
-        <i class="fa-solid fa-right-from-bracket"></i> ログアウト
-      <% end %>
-    </li>
-  <% else %>
-
-    <li class="nav-item">
-      <%= link_to servers_path, class: 'nav-link pb-3 pt-2 text-light' do %>
-        <i class="fa-solid fa-list"></i> 掲示板
-      <% end %>
-    </li>
-
-    <li class="nav-item">
-      <%= link_to about_path, class: 'nav-link pb-3 pt-0 text-light' do %>
-        <i class="fa-solid fa-ranking-star"></i> ランキング
-      <% end %>
-    </li>
-
-    <li class="nav-item">
-      <%= link_to new_user_registration_path, class: 'nav-link pb-3 pt-0 text-light' do %>
-        <i class="fa-solid fa-user-plus"></i> 新規登録
-      <% end %>
-    </li>
-
-    <li class="nav-item">
-      <%= link_to new_user_session_path, class: 'nav-link pb-3 pt-0 text-light' do %>
-        <i class="fa-solid fa-right-to-bracket"></i> ログイン
-      <% end %>
-    </li>
-
-    <li class="nav-item">
-      <%= link_to homes_guest_login_path, method: :post, class: 'nav-link pb-3 pt-0 text-light' do %>
-        <i class="fa-solid fa-users"></i> ゲストさん
-      <% end %>
-    </li>
-  <% end %>
-
-  <% if false %>
-    <%= image_tag current_user.image %>
-    <%= current_user.name %>さん
-    <%= link_to "ログアウト", log_out_path %>
-  <% end %>
+           <div class="flex-shrink-0 pb-2">
+              <ul class="list-unstyled ps-0">
+                <li class="my-1">
+                  <button class="btn-toggle d-inline-flex align-items-center rounded border-0 p-0 text-light" data-bs-toggle="collapse" data-bs-target="#server-new-collapse" aria-expanded="false">
+                    新規投稿
+                  </button>
+                  <div class="collapse" id="server-new-collapse">
+                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                      <li>
+                        <%= link_to new_server_path, class: "link-body-emphasis d-inline-flex text-decoration-none rounded text-light" do %>
+                          <i class="fa-solid fa-pen-to-square align-self-center pe-1"></i>投稿
+                        <% end %>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+                <li class="mb-1">
+                  <button class="btn-toggle d-inline-flex align-items-center rounded border-0 p-0 text-light" data-bs-toggle="collapse" data-bs-target="#server-index-collapse" aria-expanded="true">
+                    掲示板
+                  </button>
+                  <div class="collapse show" id="server-index-collapse">
+                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small text-light">
+                      <li><%= link_to "全て", servers_path, class:"link-body-emphasis d-inline-flex text-decoration-none rounded text-light" %></li>
+                      <% Server.where(play: ..Time.current, end: Time.current..).map { |o| o.game_name }.uniq.each do | game_name | %>
+                        <li><%= link_to game_name, servers_path(game_name: game_name), class: "link-body-emphasis d-inline-flex text-decoration-none rounded text-light" %></li>
+                      <% end %>
+                    </ul>
+                  </div>
+                </li>
+                <li class="mb-1">
+                  <button class="btn-toggle d-inline-flex align-items-center rounded border-0 p-0 text-light" data-bs-toggle="collapse" data-bs-target="#ranking-collapse" aria-expanded="false">
+                    ランキング
+                  </button>
+                  <div class="collapse" id="ranking-collapse">
+                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                      <li>
+                        <%= link_to about_path, class: "link-body-emphasis d-inline-flex text-decoration-none rounded text-light" do %>
+                          <i class="fa-solid fa-ranking-star align-self-center pe-1"></i>ランキング
+                        <% end %>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+                <li class="border-top my-2"></li>
+                <li class="mb-1">
+                  <button class="btn-toggle d-inline-flex align-items-center rounded border-0 p-0 text-light" data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false">
+                    アカウント
+                  </button>
+                  <div class="collapse" id="account-collapse">
+                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                      <li>
+                        <%= link_to user_path(current_user.id), class: "link-body-emphasis d-inline-flex text-decoration-none rounded text-light" do %>
+                          <i class="fa-solid fa-user align-self-center pe-1"></i>マイページ
+                        <% end %>
+                      </li>
+                      <li>
+                        <%= link_to destroy_user_session_path, method: :delete, class: "link-body-emphasis d-inline-flex text-decoration-none rounded text-light" do%>
+                          <i class="fa-solid fa-right-from-bracket align-self-center pe-1"></i>ログアウト
+                        <% end %>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          <% else %>
+            <div class="flex-shrink-0 pb-2">
+              <ul class="list-unstyled ps-0">
+                <li class="mb-1">
+                  <button class="btn-toggle d-inline-flex align-items-center rounded border-0 p-0 text-light" data-bs-toggle="collapse" data-bs-target="#server-index-collapse" aria-expanded="true">
+                    掲示板
+                  </button>
+                  <div class="collapse show" id="server-index-collapse">
+                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small text-light">
+                      <li><%= link_to "全て", servers_path, class:"link-body-emphasis d-inline-flex text-decoration-none rounded text-light" %></li>
+                      <% Server.where(play: ..Time.current, end: Time.current..).map { |o| o.game_name }.uniq.each do | game_name | %>
+                        <li><%= link_to game_name, servers_path(game_name: game_name), class: "link-body-emphasis d-inline-flex text-decoration-none rounded text-light" %></li>
+                      <% end %>
+                    </ul>
+                  </div>
+                </li>
+                <li class="mb-1">
+                  <button class="btn-toggle d-inline-flex align-items-center rounded border-0 p-0 text-light" data-bs-toggle="collapse" data-bs-target="#ranking-collapse" aria-expanded="false">
+                    ランキング
+                  </button>
+                  <div class="collapse" id="ranking-collapse">
+                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                      <li>
+                        <%= link_to about_path, class: "link-body-emphasis d-inline-flex text-decoration-none rounded text-light" do %>
+                          <i class="fa-solid fa-ranking-star align-self-center pe-1"></i>ランキング
+                        <% end %>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+                <li class="border-top my-2"></li>
+                <li class="mb-1">
+                  <button class="btn-toggle d-inline-flex align-items-center rounded border-0 p-0 text-light" data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false">
+                    アカウント
+                  </button>
+                  <div class="collapse" id="account-collapse">
+                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                      <li>
+                        <%= link_to new_user_registration_path, class: "link-body-emphasis d-inline-flex text-decoration-none rounded text-light" do %>
+                          <i class="fa-solid fa-user-plus align-self-center pe-1"></i>新規登録
+                        <% end %>
+                      </li>
+                      <li>
+                        <%= link_to new_user_session_path, class: "link-body-emphasis d-inline-flex text-decoration-none rounded text-light" do %>
+                          <i class="fa-solid fa-right-to-bracket align-self-center pe-1"></i>ログイン
+                        <% end %>
+                      </li>
+                      <li>
+                        <%= link_to homes_guest_login_path, method: :post, class: "link-body-emphasis d-inline-flex text-decoration-none rounded text-light" do %>
+                          <i class="fa-solid fa-users align-self-center pe-1"></i>ゲストログイン
+                        <% end %>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          <% end %>
         </ul>
         <div class="search-bar ms-auto">
           <%= form_with(url: servers_path, method: :get, local: true, class: "d-flex") do |f| %>
@@ -111,7 +167,7 @@
       </div>
     </nav>
 
-    <main class="main-body">
+    <main class="main-body bg-body-secondary">
       <%= render 'layouts/flash_messages' %>
       <%= yield %>
     </main>

@@ -20,13 +20,11 @@
           </thead>
           <tbody>
             <% @game_rank.each.with_index(1) do |data, i| %>
-              <%= link_to servers_path(game_name: data.first), style: "text-decoration:none;" do %>
-                <tr>
-                  <th scope="row"><%= i %>位</th>
-                  <td><%= data.first %></td>
-                  <td><%= data.last %>回</td>
-                </tr>
-              <% end %>
+              <tr>
+                <th scope="row"><%= i %>位</th>
+                <td><%= link_to data.first, servers_path(game_name: data.first), class:"text-black", style:"text-decoration:none;" %></td>
+                <td><%= data.last %>回</td>
+              </tr>
             <% end %>
           </tbody>
         </table>

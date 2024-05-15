@@ -13,8 +13,11 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    @user.update(user_params)
-    redirect_to user_path
+    if @user.update(user_params)
+      redirect_to user_path
+    else
+      render :edit
+    end
   end
 
   def destroy
@@ -29,8 +32,6 @@ class UsersController < ApplicationController
     @servers = @user.favorite_servers.page(params[:page])
     @game_names = @servers.map { |o| o.game_name }.uniq
     render 'servers/index'
-    #favorites = Favorite.where(user_id: @user.id).pluck(:server_id)
-    #@favorite_servers = Server.find(favorites)
   end
 
   

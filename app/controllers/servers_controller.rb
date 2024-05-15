@@ -55,11 +55,11 @@ class ServersController < ApplicationController
   def server_params
     params.require(:server).permit(:game_name, :link, :tool, :title, :body, :play, :end)
   end
-  
+
   def require_logged_in
     redirect_to new_user_session_path unless current_user
   end
-  
+
   def correct_user
     @server = current_user.servers.find_by_id(params[:id])
     redirect_to root_path unless @server

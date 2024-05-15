@@ -1,6 +1,76 @@
 <div class="top-container container-fluid p-0">
-  <div class="main-visual">
+  <div class="row mx-0 mb-3 bg-dark" style="height:200px;">
+    <div class="align-self-center">
+      <h1 class="fw-bold text-white text-center align-self-center">
+        Game Nowを始めよう
+      </h1>
+      <div class="text-center text-white">
+        Game Nowは無駄な掲示板を省き、現在募集している掲示板のみを掲載する掲示板サイトです
+      </div>
+    </div>
   </div>
+  <div class="row m-0 pb-2">
+    <h4 class="fw-bold p-0">Game Nowとは</h4>
+    <div class="topic col-lg bg-light border p-3">
+      <div class="fw-bold">
+        ゲーム友達を募集する掲示板サイト
+      </div>
+    </div>
+    <div class="topic col-lg bg-light border p-3">
+      <div class="fw-bold">
+        募集中の掲示板のみを掲載する掲示板リスト
+      </div>
+      <div>
+        掲示板を投稿する際に掲載終了日時を指定するため、募集が終了した掲示板は掲載されません。そのため、現在募集している掲示板だけが掲載されるため、良いのがあったけど募集が終わってたなんてことを無くせます。
+      </div>
+    </div>
+    <div class="topic col-lg bg-light border p-3">
+      <div class="fw-bold">
+        自分が参加する予定の掲示板を管理
+      </div>
+    </div>
+  </div>
+  <div class="row m-0 pb-2">
+    <h4 class="fw-bold p-0">Game Nowの使い方</h4>
+    <div class="topic col-lg bg-light border p-3">
+      <div class="fw-bold">
+        <%= link_to new_server_path, class: "text-decoration-none text-black" do %>
+          <i class="fa-solid fa-pen-to-square align-self-center pe-1"></i>投稿
+        <% end %>
+      </div>
+      <div>
+        募集日時、掲載終了日時を指定して投稿できます。<br>
+        使用する通話アプリや通話アプリの招待リンクなどを貼り付けることができます
+      </div>
+    </div>
+    <div class="topic col-lg bg-light border p-3">
+      <div class="fw-bold">
+        <%= link_to servers_path, class: "text-decoration-none text-black" do %>
+          <i class="fa-solid fa-list-ul align-self-center pe-1"></i>掲示板
+        <% end %>
+      </div>
+      <div>
+        募集中のゲームごとに掲示板を探すことができます。
+      </div>
+    </div>
+    <div class="topic col-lg bg-light border p-3">
+      <div class="fw-bold">
+        <i class="fa-regular fa-comment align-self-center pe-1"></i>コメント・参加申請
+      </div>
+      <div>
+        掲示板の「コメント・参加申請はこちら」ボタンからコメント・参加申請をすることができます。
+      </div>
+    </div>
+    <div class="topic col-lg bg-light border p-3">
+      <div class="fw-bold">
+        <i class="fa-solid fa-list-check align-self-center pe-1"></i>参加予定の掲示板
+      </div>
+      <div>
+        マイページの設定から掲示板の「参加する」を押したリストを表示することができます。
+      </div>
+    </div>
+  </div>
+</div>
   <div class="">
     <div class="p-2 text-center">
       Game Nowはゲーム友達を募集するための掲示板サイトです
@@ -19,14 +89,6 @@
       <%= link_to "掲示板を覗いてみる", servers_path, class: 'btn btn-outline-primary'  %>
       </div>
     </div>
-  </div>
-  <div class="row m-0 text-light bg-primary" style="height:100px">
-    <h2 class="main-bar m-0 p-0 d-flex justify-content-center align-self-center">
-      仲間を募集してみよう！
-      <%= link_to new_server_path, class: "badge rounded-pill bg-light text-primary" do %>
-        投稿してみる
-      <% end %>
-    </h2>
   </div>
 </div>
 
