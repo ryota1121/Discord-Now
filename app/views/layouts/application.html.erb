@@ -49,7 +49,7 @@
                   </button>
                   <div class="collapse show" id="server-index-collapse">
                     <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small text-light">
-                      <li><%= link_to "全て", servers_path, class:"link-body-emphasis d-inline-flex text-decoration-none rounded text-light" %></li>
+                      <li><%= link_to "全てのゲーム", servers_path, class:"link-body-emphasis d-inline-flex text-decoration-none rounded text-light" %></li>
                       <% Server.where(play: ..Time.current, end: Time.current..).map { |o| o.game_name }.uniq.each do | game_name | %>
                         <li><%= link_to game_name, servers_path(game_name: game_name), class: "link-body-emphasis d-inline-flex text-decoration-none rounded text-light" %></li>
                       <% end %>
@@ -101,7 +101,7 @@
                   </button>
                   <div class="collapse show" id="server-index-collapse">
                     <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small text-light">
-                      <li><%= link_to "全て", servers_path, class:"link-body-emphasis d-inline-flex text-decoration-none rounded text-light" %></li>
+                      <li><%= link_to "全てのゲーム", servers_path, class:"link-body-emphasis d-inline-flex text-decoration-none rounded text-light" %></li>
                       <% Server.where(play: ..Time.current, end: Time.current..).map { |o| o.game_name }.uniq.each do | game_name | %>
                         <li><%= link_to game_name, servers_path(game_name: game_name), class: "link-body-emphasis d-inline-flex text-decoration-none rounded text-light" %></li>
                       <% end %>

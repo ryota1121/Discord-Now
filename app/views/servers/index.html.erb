@@ -3,7 +3,7 @@
     <div class="col px-0 pb-3 border-bottom border-dark">
       <h2 class="fw-bold"><%= @plefix %>掲示板リスト</h2>
       <p class="m-0">募集中のゲーム</p>
-        <%= link_to "全て", servers_path, class: "badge bg-dark text-light" %>
+        <%= link_to "全てのゲーム", servers_path, class: "badge bg-dark text-light" %>
         <% @game_names.each do | game_name | %>
           <%= link_to game_name, servers_path(game_name: game_name), class: "badge bg-dark text-light" %>
         <% end %>

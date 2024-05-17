@@ -28,14 +28,9 @@ body {
 }
 
 .main-visual {
-  height: 700px;
-  background-image: url('../images/game_now.jpg');
-  background-size: auto;
+  background-image: url('../images/game_now.jpeg');
+  background-size: contain;
   background-position: center;
-}
-
-.main-btn {
-  padding-bottom: 120px;
 }
 
 .main-bar {
@@ -172,28 +167,24 @@ body {
 
 @media (max-width: 690px) {
   .main-visual {
-    height: 480px;
-    background-size: cover;
+
   }
 }
 
 @media (max-width: 590px) {
   .main-bar {
-    font-size: 20px;
   }
 }
 
 @media (max-width: 480px) {
-  .main-visual {
-    height: 350px;
-    background-size: cover;
+  .main-visual-text {
+    font-size: 30px;
   }
 }
 
 @media (max-width: 384px) {
-  .main-visual {
-    height: 300px;
-    background-size: cover;
+  .main-visual-text {
+    font-size: 25px;
   }
 }
 

@@ -1,11 +1,11 @@
 <div class="top-container container-fluid p-0">
-  <div class="row mx-0 mb-3 bg-dark" style="height:200px;">
+  <div class="main-visual row mx-0 mb-3 bg-dark" style="height:200px;">
     <div class="align-self-center">
-      <h1 class="fw-bold text-white text-center align-self-center">
+      <h1 class="main-visual-text fw-bold text-white text-center align-self-center">
         Game Nowを始めよう
       </h1>
       <div class="text-center text-white">
-        Game Nowは無駄な掲示板を省き、現在募集している掲示板のみを掲載する掲示板サイトです
+        Game Nowは無駄な掲示板を除き、現在募集している掲示板のみを掲載する掲示板サイトです
       </div>
     </div>
   </div>
@@ -15,18 +15,24 @@
       <div class="fw-bold">
         ゲーム友達を募集する掲示板サイト
       </div>
+      <div>
+        新規投稿から遊びたいゲーム、使用する通話アプリなどを指定して募集することができます。また、探す方もゲームの種類ごとに掲示板を探すことができます。
+      </div>
     </div>
     <div class="topic col-lg bg-light border p-3">
       <div class="fw-bold">
         募集中の掲示板のみを掲載する掲示板リスト
       </div>
       <div>
-        掲示板を投稿する際に掲載終了日時を指定するため、募集が終了した掲示板は掲載されません。そのため、現在募集している掲示板だけが掲載されるため、良いのがあったけど募集が終わってたなんてことを無くせます。
+        掲示板を投稿する際に掲載終了日時を指定するため、募集が終了した掲示板は掲載されません。
       </div>
     </div>
     <div class="topic col-lg bg-light border p-3">
       <div class="fw-bold">
         自分が参加する予定の掲示板を管理
+      </div>
+      <div>
+        マイページの設定から自分が参加予定の掲示板を管理することができます。掲示板には、それぞれコメントもできます。
       </div>
     </div>
   </div>
@@ -38,9 +44,32 @@
           <i class="fa-solid fa-pen-to-square align-self-center pe-1"></i>投稿
         <% end %>
       </div>
-      <div>
-        募集日時、掲載終了日時を指定して投稿できます。<br>
-        使用する通話アプリや通話アプリの招待リンクなどを貼り付けることができます
+      <div class="pb-1">
+        募集日時、掲載終了日時を指定して投稿できます。
+      </div>
+      <div class="text-primary" data-bs-toggle="modal" data-bs-target="#topic1Modal">
+        詳しく見る »
+      </div>
+      <div class="modal fade" id="topic1Modal" tabindex="-1" aria-labelledby="topic1ModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="topic1ModalLabel">
+                <i class="fa-solid fa-pen-to-square align-self-center pe-1"></i>投稿
+              </h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              募集日時、掲載終了日時を指定して投稿できます。<br>
+              掲示板には、募集日時が近いものから表示されるようになっています。掲載終了日時が過ぎたら掲示板には表示されなくなりますが、マイページの投稿リストから再度編集して投稿することができます。<br>
+              通話アプリのリンクには、投稿者のフレンドコードやグループの招待リンクなどを貼り付けてください。投稿詳細の招待リンクボタンからコピーできるようになります。<br>
+              投稿の編集・削除は投稿右上の設定からできます。
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <div class="topic col-lg bg-light border p-3">
@@ -49,33 +78,105 @@
           <i class="fa-solid fa-list-ul align-self-center pe-1"></i>掲示板
         <% end %>
       </div>
-      <div>
+      <div class="pb-1">
         募集中のゲームごとに掲示板を探すことができます。
+      </div>
+      <div class="text-primary" data-bs-toggle="modal" data-bs-target="#topic2Modal">
+        詳しく見る »
+      </div>
+      <div class="modal fade" id="topic2Modal" tabindex="-1" aria-labelledby="topic2ModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="topic2ModalLabel">
+                <i class="fa-solid fa-list-ul align-self-center pe-1"></i>掲示板
+              </h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              募集中のゲームごとに掲示板を探すことができます。掲示板リストページにある募集中のゲーム下のゲームタグをクリックしてください。<br>
+              掲示板には、募集日時が近いものから表示されます。掲載終了日時が過ぎたものは表示されません。<br>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <div class="topic col-lg bg-light border p-3">
       <div class="fw-bold">
         <i class="fa-regular fa-comment align-self-center pe-1"></i>コメント・参加申請
       </div>
-      <div>
+      <div class="pb-1">
         掲示板の「コメント・参加申請はこちら」ボタンからコメント・参加申請をすることができます。
+      </div>
+      <div class="text-primary" data-bs-toggle="modal" data-bs-target="#topic3Modal">
+        詳しく見る »
+      </div>
+      <div class="modal fade" id="topic3Modal" tabindex="-1" aria-labelledby="topic3ModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="topic3ModalLabel">
+                <i class="fa-regular fa-comment align-self-center pe-1"></i>コメント・参加申請
+              </h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              掲示板の「コメント・参加申請はこちら」ボタンからコメント・参加申請をすることができます。<br>
+              参加申請をしたい場合は、赤色の参加するボタンを押してください。参加申請を取り消したい場合は、青色の参加をやめるボタンを押してください。<br>
+              コメントは、入力フォームに入力してから送信ボタンを押してください。
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <div class="topic col-lg bg-light border p-3">
       <div class="fw-bold">
-        <i class="fa-solid fa-list-check align-self-center pe-1"></i>参加予定の掲示板
+        <i class="fa-solid fa-list-check align-self-center pe-1"></i>参加予定の掲示板リスト
       </div>
-      <div>
-        マイページの設定から掲示板の「参加する」を押したリストを表示することができます。
+      <div class="pb-1">
+        マイページの設定から参加申請をした掲示板リストを表示することができます。
+      </div>
+      <div class="text-primary" data-bs-toggle="modal" data-bs-target="#topic4Modal">
+        詳しく見る »
+      </div>
+      <div class="modal fade" id="topic4Modal" tabindex="-1" aria-labelledby="topic4ModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="topic4ModalLabel">
+                <i class="fa-solid fa-list-check align-self-center pe-1"></i>参加予定の掲示板リスト
+              </h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              マイページの設定から参加申請をした掲示板リストを表示することができます。<br>
+              参加申請は、掲示板の「コメント・参加申請はこちら」ボタンからすることができます。
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
-  <div class="">
-    <div class="p-2 text-center">
-      Game Nowはゲーム友達を募集するための掲示板サイトです
+  <div class="border border-dark-subtle p-3" >
+    <div class="pb-1 text-center">
+      Game Nowは『今』誰かとゲームがしたい方のために作られました
     </div>
-    <div class="main-btn d-flex justify-content-center">
+    <div class="pb-1 text-center">
+      なるべく無駄な掲示板を除き、あなたが探したいものがすぐ見つかるようなサイトになっています
+    </div>
+    <div class="pb-2 text-center">
+      皆様でマナーを守ってご自由にご利用ください！
+    </div>
+    <div class="d-flex justify-content-center">
       <% if user_signed_in? %>
         <div class="pe-2">
           <%= link_to "新規投稿する", new_server_path, class: 'btn btn-outline-primary' %>
@@ -86,7 +187,7 @@
         </div>
       <% end %>
       <div class="ps-2">
-      <%= link_to "掲示板を覗いてみる", servers_path, class: 'btn btn-outline-primary'  %>
+        <%= link_to "掲示板を覗いてみる", servers_path, class: 'btn btn-outline-primary'  %>
       </div>
     </div>
   </div>
