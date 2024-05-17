@@ -176,19 +176,10 @@
     <div class="pb-2 text-center">
       皆様でマナーを守ってご自由にご利用ください！
     </div>
-    <div class="d-flex justify-content-center">
-      <% if user_signed_in? %>
-        <div class="pe-2">
-          <%= link_to "新規投稿する", new_server_path, class: 'btn btn-outline-primary' %>
-        </div>
-      <% else %>
-        <div class="pe-2">
-          <%= link_to "新規登録する", new_user_registration_path, class: 'btn btn-outline-primary' %>
-        </div>
+    <div class="text-center">
+      <%= link_to 'https://x.com/game_now_board', class: "text-decoration-none" do %>
+        Game Now
       <% end %>
-      <div class="ps-2">
-        <%= link_to "掲示板を覗いてみる", servers_path, class: 'btn btn-outline-primary'  %>
-      </div>
     </div>
   </div>
 </div>
