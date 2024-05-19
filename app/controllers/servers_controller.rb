@@ -18,7 +18,7 @@ class ServersController < ApplicationController
   end
 
   def index
-    @servers = Server.where(play: ..Time.current, end: Time.current..)
+    @servers = Server.where(end: Time.current..)
     @game_names = @servers.map { |o| o.game_name }.uniq
     @servers = @servers.where(game_name: params[:game_name]) if params[:game_name].present?
     @servers = @servers.keyword_search(params[:keyword]) if params[:keyword].present?

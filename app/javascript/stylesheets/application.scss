@@ -46,6 +46,10 @@ body {
   justify-content: flex-center;
 }
 
+.server {
+  margin: 0px 16px 16px 0px;
+}
+
 .example {
   font-size: 12px;
 	color: black;
@@ -165,9 +169,25 @@ body {
   }
 }
 
+@media (max-width: 751px) {
+  .responsive-center {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 719px) {
+  .server {
+    margin: 0px 0px 16px 0px;
+  }
+}
+
 @media (max-width: 480px) {
   .main-visual-text {
     font-size: 30px;
+  }
+  .responsive-center-btn {
+    display: flex;
+    justify-content: center;
   }
 }
 

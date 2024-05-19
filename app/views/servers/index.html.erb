@@ -11,22 +11,22 @@
   </div>
 
   <% if @servers.any? %>
-    <div class="row">
+    <div class="responsive-center row">
       <%= render @servers %>
     </div>
     <div class="row">
-      <%= link_to new_server_path(game_name: params[:game_name]),class: "p-0" do %>
-        <div class="btn btn-warning p-2 shadow">上記投稿以外で新たに仲間を募集する</div>
-      <% end %>
+      <div class="col p-0">
+        <%= link_to "上記投稿以外で新たに仲間を募集する",new_server_path(game_name: params[:game_name]),class: "responsive-center-btn p-0 btn btn-warning p-2 shadow" %>
+      </div>
     </div>
   <% else %>
     <div class="row">
       <h4 class="m-0 p-0 pb-4">現在、このゲームの募集はありません</h4>
     </div>
     <div class="row">
-    <%= link_to new_server_path(game_name: params[:game_name]),class: "p-0" do %>
-      <p class="btn btn-warning p-2 shadow">このゲームで新たに仲間を募集する</p>
-    <% end %>
+      <div class="col p-0">
+        <%= link_to "このゲームで新たに仲間を募集す",new_server_path(game_name: params[:game_name]),class: "responsive-center-btn p-0 btn btn-warning p-2 shadow" %>
+      </div>
     </div>
   <% end %>
 

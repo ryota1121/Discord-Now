@@ -19,7 +19,7 @@
   </div>
 
   <% if @servers.any? %>
-   <div class="row">
+   <div class="responsive-center row">
     <%= render @servers %>
   </div>
   <% else %>
@@ -27,9 +27,9 @@
       <h4 class="m-0 p-0 pb-4">現在、投稿している掲示板はありません</h4>
     </div>
     <div class="row">
-      <%= link_to new_server_path,class: "p-0" do %>
-        <p class="btn btn-warning p-2 shadow">新規投稿する</p>
-      <% end %>
+      <div class="col p-0">
+        <%= link_to "新規投稿する",new_server_path,class: "responsive-center-btn p-0 btn btn-warning p-2 shadow" %>
+      </div>
     </div>
   <% end %>
 
