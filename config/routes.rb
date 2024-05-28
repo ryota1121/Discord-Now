@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   root 'homes#top'
   get 'homes/about', to: 'homes#about', as: 'about'
   post 'homes/guest_login', to: 'homes#guest_login'
@@ -13,13 +14,22 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: {
   }
-  
+
+  #devise_for :admins, path: 'admin/admins', controllers: {
+  #  sessions: 'admin/admins/sessions'
+  #}
+
+  #namespace :admin do
+  #  root 'home#top'
+  #  resources :servers, only: [:index, :destroy]
+  #end
+
   resources :users, only: [:show, :edit, :update] do
     member do
       get :favorites
     end
   end
-  
+
   resources :servers, only: [:new, :create, :index, :show, :destroy] do
     resources :server_comments, only: [:create]
     resource :favorite, only: [:create, :destroy]
